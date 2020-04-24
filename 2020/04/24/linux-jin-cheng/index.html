@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="优先级队列, java,python,spring,算法">
+    <meta name="keywords" content="Linux进程, java,python,spring,算法">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>优先级队列 | 程序员小宇</title>
+    <title>Linux进程 | 程序员小宇</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -247,12 +247,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">优先级队列</h1>
+                    <h1 class="description center-align post-title">Linux进程</h1>
                 </div>
             </div>
         </div>
@@ -377,12 +377,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">算法</span>
+                            <a href="/tags/%E8%BF%9B%E7%A8%8B/">
+                                <span class="chip bg-color">进程</span>
                             </a>
                         
-                            <a href="/tags/%E9%98%9F%E5%88%97/">
-                                <span class="chip bg-color">队列</span>
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
+                                <span class="chip bg-color">嵌入式</span>
                             </a>
                         
                     </div>
@@ -393,8 +397,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-category">
-                                数据结构与算法
+                            <a href="/categories/Linux%E7%9B%B8%E5%85%B3/" class="post-category">
+                                Linux相关
                             </a>
                         
                     </div>
@@ -406,7 +410,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-23
+                    2020-04-24
                 </div>
                 
 
@@ -420,14 +424,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    831
+                    444
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 
@@ -442,138 +446,19 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="优先级队列使用二叉堆实现的"><a href="#优先级队列使用二叉堆实现的" class="headerlink" title="优先级队列使用二叉堆实现的"></a>优先级队列使用二叉堆实现的</h2><p>插入元素和删除队列中最大的元素时间复杂度都是O(logn),因为这俩个操作是基于二叉堆的上浮和下沉操作实现的</p>
-<h2 id="二叉堆是什么？"><a href="#二叉堆是什么？" class="headerlink" title="二叉堆是什么？"></a>二叉堆是什么？</h2><p>二叉堆逻辑结构是完全二叉树，存储结构是数组</p>
-<h2 id="二叉堆是怎么存的呢？"><a href="#二叉堆是怎么存的呢？" class="headerlink" title="二叉堆是怎么存的呢？"></a>二叉堆是怎么存的呢？</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 父节点的索引</span>
-<span class="token keyword">int</span> <span class="token function">parent</span><span class="token punctuation">(</span><span class="token keyword">int</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> root <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">// 左孩子的索引</span>
-<span class="token keyword">int</span> <span class="token function">left</span><span class="token punctuation">(</span><span class="token keyword">int</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> root <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">// 右孩子的索引</span>
-<span class="token keyword">int</span> <span class="token function">right</span><span class="token punctuation">(</span><span class="token keyword">int</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> root <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如图：数组索引0的位置专门置空<br><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200422153802560-2143966998.png" alt=""></p>
-<h2 id="优先级队列的实现"><a href="#优先级队列的实现" class="headerlink" title="优先级队列的实现"></a>优先级队列的实现</h2><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MaxPQ</span> <span class="token punctuation">{</span>
-    <span class="token keyword">private</span> Integer<span class="token punctuation">[</span><span class="token punctuation">]</span> pq<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 当前 Priority Queue 中的元素个数</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> N <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">public</span> <span class="token function">MaxPQ</span><span class="token punctuation">(</span><span class="token keyword">int</span> cap<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 索引 0 不用，所以多分配一个空间</span>
-        pq <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Integer</span><span class="token punctuation">[</span>cap <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        MaxPQ pq<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">MaxPQ</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        pq<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        pq<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        pq<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>pq<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//5</span>
-        pq<span class="token punctuation">.</span><span class="token function">delMax</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>pq<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//4</span>
-        pq<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>pq<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//10</span>
-
-    <span class="token punctuation">}</span>
-
-
-
-    <span class="token comment" spellcheck="true">/* 返回当前队列中最大元素 */</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> pq<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/* 插入元素 e */</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">int</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        N<span class="token operator">++</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// 先把新元素加到最后</span>
-        pq<span class="token punctuation">[</span>N<span class="token punctuation">]</span> <span class="token operator">=</span> e<span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// 然后让它上浮到正确的位置</span>
-        <span class="token function">swim</span><span class="token punctuation">(</span>N<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/* 删除并返回当前队列中最大元素 */</span>
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">delMax</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 最大堆的堆顶就是最大元素</span>
-        <span class="token keyword">int</span> max <span class="token operator">=</span> pq<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// 把这个最大元素换到最后，删除之</span>
-        <span class="token function">exch</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> N<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        pq<span class="token punctuation">[</span>N<span class="token punctuation">]</span> <span class="token operator">=</span> null<span class="token punctuation">;</span>
-        N<span class="token operator">--</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">// 让 pq[1] 下沉到正确位置</span>
-        <span class="token function">sink</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> max<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/* 上浮第 k 个元素，以维护最大堆性质 */</span>
-    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">swim</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 如果浮到堆顶，就不能再上浮了</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>k <span class="token operator">></span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> <span class="token function">less</span><span class="token punctuation">(</span><span class="token function">parent</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">// 如果第 k 个元素比上层大</span>
-            <span class="token comment" spellcheck="true">// 将 k 换上去</span>
-            <span class="token function">exch</span><span class="token punctuation">(</span><span class="token function">parent</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            k <span class="token operator">=</span> <span class="token function">parent</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/* 下沉第 k 个元素，以维护最大堆性质 */</span>
-    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">sink</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 如果沉到堆底，就沉不下去了</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">left</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> N<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token comment" spellcheck="true">// 先假设左边节点较大</span>
-            <span class="token keyword">int</span> older <span class="token operator">=</span> <span class="token function">left</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">// 如果右边节点存在，比一下大小</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">right</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span> <span class="token operator">&lt;=</span> N <span class="token operator">&amp;&amp;</span> <span class="token function">less</span><span class="token punctuation">(</span>older<span class="token punctuation">,</span> <span class="token function">right</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                older <span class="token operator">=</span> <span class="token function">right</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">// 结点 k 比俩孩子都大，就不必下沉了</span>
-            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">less</span><span class="token punctuation">(</span>older<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
-            <span class="token comment" spellcheck="true">// 否则，不符合最大堆的结构，下沉 k 结点</span>
-            <span class="token function">exch</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> older<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            k <span class="token operator">=</span> older<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/* 交换数组的两个元素 */</span>
-    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">exch</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> temp <span class="token operator">=</span> pq<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        pq<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> pq<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        pq<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token comment" spellcheck="true">/* pq[i] 是否比 pq[j] 小？ */</span>
-    <span class="token keyword">private</span> <span class="token keyword">boolean</span> <span class="token function">less</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token punctuation">,</span> <span class="token keyword">int</span> j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> pq<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> pq<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">// 父节点的索引</span>
-    <span class="token keyword">int</span> <span class="token function">parent</span><span class="token punctuation">(</span><span class="token keyword">int</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> root <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">// 左孩子的索引</span>
-    <span class="token keyword">int</span> <span class="token function">left</span><span class="token punctuation">(</span><span class="token keyword">int</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> root <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment" spellcheck="true">// 右孩子的索引</span>
-    <span class="token keyword">int</span> <span class="token function">right</span><span class="token punctuation">(</span><span class="token keyword">int</span> root<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> root <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li><p>二叉堆就是一种完全二叉树，所以适合存储在数组中，而且二叉堆拥有一些特殊性质。</p>
-</li>
-<li><p>二叉堆的操作很简单，主要就是上浮和下沉，来维护堆的性质（堆有序），核心代码也就十行。</p>
-</li>
-<li><p>优先级队列是基于二叉堆实现的，主要操作是插入和删除。插入是先插到最后，然后上浮到正确位置；删除是调换位置后再删除，然后下沉到正确位置。核心代码也就十行。</p>
-</li>
+                <h2 id="pstree"><a href="#pstree" class="headerlink" title="pstree"></a>pstree</h2><p>以树结构的方式查看linux现有进程<br><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423094028123-804129779.png" alt=""></p>
+<h2 id="liunx在启动的时候会由内核创建一个init进程"><a href="#liunx在启动的时候会由内核创建一个init进程" class="headerlink" title="liunx在启动的时候会由内核创建一个init进程"></a>liunx在启动的时候会由内核创建一个init进程</h2><p>其他进程都是init进程执行fork函数创建的，init进程的pid是1<br><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423094720681-232279544.png" alt=""></p>
+<h2 id="fork函数是干嘛的？"><a href="#fork函数是干嘛的？" class="headerlink" title="fork函数是干嘛的？"></a>fork函数是干嘛的？</h2><p>fork函数简单来说就是克隆进程，克隆出来的进程称为子进程，原来的叫父进程<br>fork函数执行的时候先复制父进程的PCB(PCB在内核空间),然后再复制用户空间的代码段、数据段、栈、堆、程序计数器<br>至于，克隆出来的进程为什么干不一样的活，下面会说明。</p>
+<h2 id="当我们在编写C程序的时候想获取该进程的pid怎么做？"><a href="#当我们在编写C程序的时候想获取该进程的pid怎么做？" class="headerlink" title="当我们在编写C程序的时候想获取该进程的pid怎么做？"></a>当我们在编写C程序的时候想获取该进程的pid怎么做？</h2><ul>
+<li>引入头文件unistd.h,该文件在/usr/include/unistd.h</li>
+<li>直接调用getpid,成功返回该进程的pid,失败返回-1<h2 id="进程的生命周期"><a href="#进程的生命周期" class="headerlink" title="进程的生命周期"></a>进程的生命周期</h2>C程序的启动函数是main函数，当启动main函数前会调用特殊函数获取main函数的入口地址，然后给main函数传递参数<h3 id="进程的中止"><a href="#进程的中止" class="headerlink" title="进程的中止"></a>进程的中止</h3><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423100357573-1633680833.png" alt=""><br><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423100418772-2062764707.png" alt=""><br><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423100437667-651065981.png" alt=""><br><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423100459471-2112571994.png" alt=""></li>
 </ul>
+<h2 id="进程内存空间分布"><a href="#进程内存空间分布" class="headerlink" title="进程内存空间分布"></a>进程内存空间分布</h2><p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423100728521-168925892.png" alt=""><br>正文就是代码：通常是共享只读的<br>初始化数据：程序执行前明确赋值的,比如int a=10;<br>未初始化数据：没有明确赋值的，使用的默认值，如int a[10];</p>
+<h2 id="环境变量表"><a href="#环境变量表" class="headerlink" title="环境变量表"></a>环境变量表</h2><p>每个进程都有自己的环境变量表<br><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423101213115-667430981.png" alt=""></p>
+<h2 id="c程序获取环境变量"><a href="#c程序获取环境变量" class="headerlink" title="c程序获取环境变量"></a>c程序获取环境变量</h2><p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423101323925-121395878.png" alt=""><br>还有其他类似的函数，比如设置等</p>
+<h2 id="c程序创建进程"><a href="#c程序创建进程" class="headerlink" title="c程序创建进程"></a>c程序创建进程</h2><p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423101512756-1174737975.png" alt=""></p>
+<h2 id="父子进程异同"><a href="#父子进程异同" class="headerlink" title="父子进程异同"></a>父子进程异同</h2><p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423101713503-1687814122.png" alt=""></p>
+<h2 id="fork的用法"><a href="#fork的用法" class="headerlink" title="fork的用法"></a>fork的用法</h2><p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423101901605-1921851913.png" alt=""></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -617,7 +502,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://haoshunyu.gitee.io/2020/04/23/you-xian-ji-dui-lie/">http://haoshunyu.gitee.io/2020/04/23/you-xian-ji-dui-lie/</a>
+                    <a href="http://haoshunyu.gitee.io/2020/04/24/linux-jin-cheng/">http://haoshunyu.gitee.io/2020/04/24/linux-jin-cheng/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -655,12 +540,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">算法</span>
+                                <a href="/tags/%E8%BF%9B%E7%A8%8B/">
+                                    <span class="chip bg-color">进程</span>
                                 </a>
                             
-                                <a href="/tags/%E9%98%9F%E5%88%97/">
-                                    <span class="chip bg-color">队列</span>
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
+                                    <span class="chip bg-color">嵌入式</span>
                                 </a>
                             
                         </div>
@@ -1092,21 +981,23 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/24/linux-jin-cheng/">
+                <a href="/2020/04/24/shu-zu-zhong-chong-fu-de-shu-zi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Linux进程">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="从上到下打印二叉树 III">
                         
-                        <span class="card-title">Linux进程</span>
+                        <span class="card-title">从上到下打印二叉树 III</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            pstree以树结构的方式查看linux现有进程
-liunx在启动的时候会由内核创建一个init进程其他进程都是init进程执行fork函数创建的，init进程的pid是1
-fork函数是干嘛的？fork函数简单来说就是克隆进程，克隆出来的
+                            
+题解1：基于上一题的递归，给递归函数再加一个变量，代表从左往右还是从右往左/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int va
                         
                     </div>
                     <div class="publish-info">
@@ -1117,8 +1008,8 @@ fork函数是干嘛的？fork函数简单来说就是克隆进程，克隆出来
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Linux%E7%9B%B8%E5%85%B3/" class="post-category">
-                                    Linux相关
+                            <a href="/categories/leetcode/" class="post-category">
+                                    leetcode
                                 </a>
                             
                             
@@ -1128,16 +1019,8 @@ fork函数是干嘛的？fork函数简单来说就是克隆进程，克隆出来
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%BF%9B%E7%A8%8B/">
-                        <span class="chip bg-color">进程</span>
-                    </a>
-                    
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/">
-                        <span class="chip bg-color">嵌入式</span>
+                    <a href="/tags/%E5%88%B7%E9%A2%98/">
+                        <span class="chip bg-color">刷题</span>
                     </a>
                     
                 </div>
@@ -1148,7 +1031,7 @@ fork函数是干嘛的？fork函数简单来说就是克隆进程，克隆出来
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2020/04/23/you-xian-ji-dui-lie/">
@@ -1185,7 +1068,6 @@ int
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
