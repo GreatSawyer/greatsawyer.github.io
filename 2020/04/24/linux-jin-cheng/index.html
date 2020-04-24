@@ -446,16 +446,24 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="pstree"><a href="#pstree" class="headerlink" title="pstree"></a>pstree</h2><p>以树结构的方式查看linux现有进程<br><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423094028123-804129779.png" alt=""></p>
-<h2 id="liunx在启动的时候会由内核创建一个init进程"><a href="#liunx在启动的时候会由内核创建一个init进程" class="headerlink" title="liunx在启动的时候会由内核创建一个init进程"></a>liunx在启动的时候会由内核创建一个init进程</h2><p>其他进程都是init进程执行fork函数创建的，init进程的pid是1<br><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423094720681-232279544.png" alt=""></p>
+                <h2 id="pstree"><a href="#pstree" class="headerlink" title="pstree"></a>pstree</h2><p>以树结构的方式查看linux现有进程</p>
+<p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423094028123-804129779.png" alt=""></p>
+<h2 id="liunx在启动的时候会由内核创建一个init进程"><a href="#liunx在启动的时候会由内核创建一个init进程" class="headerlink" title="liunx在启动的时候会由内核创建一个init进程"></a>liunx在启动的时候会由内核创建一个init进程</h2><p>其他进程都是init进程执行fork函数创建的，init进程的pid是1</p>
+<p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423094720681-232279544.png" alt=""></p>
 <h2 id="fork函数是干嘛的？"><a href="#fork函数是干嘛的？" class="headerlink" title="fork函数是干嘛的？"></a>fork函数是干嘛的？</h2><p>fork函数简单来说就是克隆进程，克隆出来的进程称为子进程，原来的叫父进程<br>fork函数执行的时候先复制父进程的PCB(PCB在内核空间),然后再复制用户空间的代码段、数据段、栈、堆、程序计数器<br>至于，克隆出来的进程为什么干不一样的活，下面会说明。</p>
 <h2 id="当我们在编写C程序的时候想获取该进程的pid怎么做？"><a href="#当我们在编写C程序的时候想获取该进程的pid怎么做？" class="headerlink" title="当我们在编写C程序的时候想获取该进程的pid怎么做？"></a>当我们在编写C程序的时候想获取该进程的pid怎么做？</h2><ul>
 <li>引入头文件unistd.h,该文件在/usr/include/unistd.h</li>
-<li>直接调用getpid,成功返回该进程的pid,失败返回-1<h2 id="进程的生命周期"><a href="#进程的生命周期" class="headerlink" title="进程的生命周期"></a>进程的生命周期</h2>C程序的启动函数是main函数，当启动main函数前会调用特殊函数获取main函数的入口地址，然后给main函数传递参数<h3 id="进程的中止"><a href="#进程的中止" class="headerlink" title="进程的中止"></a>进程的中止</h3><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423100357573-1633680833.png" alt=""><br><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423100418772-2062764707.png" alt=""><br><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423100437667-651065981.png" alt=""><br><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423100459471-2112571994.png" alt=""></li>
+<li>直接调用getpid,成功返回该进程的pid,失败返回-1<h2 id="进程的生命周期"><a href="#进程的生命周期" class="headerlink" title="进程的生命周期"></a>进程的生命周期</h2>C程序的启动函数是main函数，当启动main函数前会调用特殊函数获取main函数的入口地址，然后给main函数传递参数<h3 id="进程的中止"><a href="#进程的中止" class="headerlink" title="进程的中止"></a>进程的中止</h3></li>
 </ul>
+<p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423100357573-1633680833.png" alt=""></p>
+<p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423100418772-2062764707.png" alt=""></p>
+<p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423100437667-651065981.png" alt=""></p>
+<p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423100459471-2112571994.png" alt=""></p>
 <h2 id="进程内存空间分布"><a href="#进程内存空间分布" class="headerlink" title="进程内存空间分布"></a>进程内存空间分布</h2><p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423100728521-168925892.png" alt=""><br>正文就是代码：通常是共享只读的<br>初始化数据：程序执行前明确赋值的,比如int a=10;<br>未初始化数据：没有明确赋值的，使用的默认值，如int a[10];</p>
-<h2 id="环境变量表"><a href="#环境变量表" class="headerlink" title="环境变量表"></a>环境变量表</h2><p>每个进程都有自己的环境变量表<br><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423101213115-667430981.png" alt=""></p>
-<h2 id="c程序获取环境变量"><a href="#c程序获取环境变量" class="headerlink" title="c程序获取环境变量"></a>c程序获取环境变量</h2><p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423101323925-121395878.png" alt=""><br>还有其他类似的函数，比如设置等</p>
+<h2 id="环境变量表"><a href="#环境变量表" class="headerlink" title="环境变量表"></a>环境变量表</h2><p>每个进程都有自己的环境变量表</p>
+<p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423101213115-667430981.png" alt=""></p>
+<h2 id="c程序获取环境变量"><a href="#c程序获取环境变量" class="headerlink" title="c程序获取环境变量"></a>c程序获取环境变量</h2><p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423101323925-121395878.png" alt=""></p>
+<p>还有其他类似的函数，比如设置等</p>
 <h2 id="c程序创建进程"><a href="#c程序创建进程" class="headerlink" title="c程序创建进程"></a>c程序创建进程</h2><p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423101512756-1174737975.png" alt=""></p>
 <h2 id="父子进程异同"><a href="#父子进程异同" class="headerlink" title="父子进程异同"></a>父子进程异同</h2><p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423101713503-1687814122.png" alt=""></p>
 <h2 id="fork的用法"><a href="#fork的用法" class="headerlink" title="fork的用法"></a>fork的用法</h2><p><img src="https://img2020.cnblogs.com/blog/1983810/202004/1983810-20200423101901605-1921851913.png" alt=""></p>
@@ -993,11 +1001,11 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            题目
 题解1：基于上一题的递归，给递归函数再加一个变量，代表从左往右还是从右往左/**
  * Definition for a binary tree node.
  * public class TreeNode {
- *     int va
+ *     int 
                         
                     </div>
                     <div class="publish-info">
