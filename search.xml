@@ -4,6 +4,231 @@
   
     
     <entry>
+      <title>hexo博客部署搭建</title>
+      <link href="/2025/02/24/ji-zhu-wen-zhang/hexo-bo-ke-da-jian-zhi-nan/"/>
+      <url>/2025/02/24/ji-zhu-wen-zhang/hexo-bo-ke-da-jian-zhi-nan/</url>
+      
+        <content type="html"><![CDATA[<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>欢迎访问我的个人博客，并期待您的友链申请。</p><h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://greatsawyer.github.io/imgRepo/img/image-20250224233655764.png"><br><img src="https://greatsawyer.github.io/imgRepo/img/image-20250224235103757.png"><br><img src="https://greatsawyer.github.io/imgRepo/img/image-20250224235156666.png"><br><img src="https://greatsawyer.github.io/imgRepo/img/image-20250224235224905.png"><br><img src="https://greatsawyer.github.io/imgRepo/img/image-20250224235326643.png"></h2><h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><p>为了顺利搭建 Hexo 博客，请确保您已经正确安装了以下工具：</p><ul><li><strong>Git</strong></li><li><strong>Node.js</strong>（推荐使用稳定的 v16 或 v18 版本，避免使用最新的 v22 版本以防止兼容性问题）</li></ul><hr><h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><p><strong>Windows</strong></p><ol><li>访问官网下载：<a href="https://git-scm.com/download/win">https://git-scm.com/download/win</a></li><li>运行安装程序，默认选项一路下一步（建议勾选 <em>Use Git from the Windows Command Prompt</em>）</li><li>安装完成后，打开命令行输入验证：</li></ol><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token parameter variable">--version</span></code></pre><p><strong>macOS</strong></p><p>方法一 （ 推荐）使用 Homebrew：</p><pre class="language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">git</span></code></pre><p>方法二 下载安装包：<br>官网下载：<a href="https://git-scm.com/download/mac">https://git-scm.com/download/mac</a></p><p>验证安装：</p><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> <span class="token parameter variable">--version</span></code></pre><p><strong>Linux（Ubuntu/Debian）</strong></p><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> update<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">git</span> <span class="token parameter variable">-y</span><span class="token function">git</span> <span class="token parameter variable">--version</span></code></pre><hr><h3 id="安装-Node-js（含-npm）"><a href="#安装-Node-js（含-npm）" class="headerlink" title="安装 Node.js（含 npm）"></a><strong>安装 Node.js（含 npm）</strong></h3><p><strong>Windows/macOS</strong></p><ol><li>访问官网下载 LTS 版本：<a href="https://nodejs.org/">https://nodejs.org</a></li><li>运行安装程序，默认选项完成安装</li><li>验证安装：</li></ol><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">node</span> <span class="token parameter variable">-v</span>  <span class="token comment"># 查看 Node 版本</span><span class="token function">npm</span> <span class="token parameter variable">-v</span>   <span class="token comment"># 查看 npm 版本</span></code></pre><p><strong>macOS（Homebrew 方式）</strong></p><pre class="language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">node</span></code></pre><p><strong>Linux（Ubuntu/Debian）</strong></p><ol><li>使用 NodeSource 仓库安装：</li></ol><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://deb.nodesource.com/setup_lts.x <span class="token operator">|</span> <span class="token function">sudo</span> <span class="token parameter variable">-E</span> <span class="token function">bash</span> -<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token parameter variable">-y</span> nodejs</code></pre><ol start="2"><li>验证：</li></ol><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">node</span> <span class="token parameter variable">-v</span> <span class="token operator">&amp;&amp;</span> <span class="token function">npm</span> <span class="token parameter variable">-v</span></code></pre><hr><h3 id="配置-Git-用户信息（首次使用必做）"><a href="#配置-Git-用户信息（首次使用必做）" class="headerlink" title="配置 Git 用户信息（首次使用必做）"></a><strong>配置 Git 用户信息（首次使用必做）</strong></h3><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> config <span class="token parameter variable">--global</span> user.name <span class="token string">"你的名字"</span><span class="token function">git</span> config <span class="token parameter variable">--global</span> user.email <span class="token string">"你的邮箱"</span></code></pre><hr><h3 id="简单测试"><a href="#简单测试" class="headerlink" title="简单测试"></a><strong>简单测试</strong></h3><ol><li>新建一个项目文件夹，运行：<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> init  <span class="token comment"># 初始化 Git 仓库</span><span class="token function">npm</span> init <span class="token parameter variable">-y</span>  <span class="token comment"># 初始化 Node 项目</span></code></pre></li><li>创建一个 <code>app.js</code> 文件并写入：<pre class="language-javascript" data-language="javascript"><code class="language-javascript">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Hello Git &amp; Node!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></li><li>运行脚本：<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">node</span> app.js</code></pre></li></ol><hr><h2 id="Hexo博客搭建"><a href="#Hexo博客搭建" class="headerlink" title="Hexo博客搭建"></a>Hexo博客搭建</h2><hr><h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><ol><li>通过以下命令全局安装 Hexo CLI：</li></ol><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-cli <span class="token parameter variable">-g</span></code></pre><ol start="2"><li>验证安装是否成功：</li></ol><pre class="language-bash" data-language="bash"><code class="language-bash">hexo <span class="token parameter variable">-v</span></code></pre><p>若出现 Hexo 的版本号，则表示安装成功。</p><hr><h3 id="本地环境初始化"><a href="#本地环境初始化" class="headerlink" title="本地环境初始化"></a>本地环境初始化</h3><ol><li><p><strong>创建博客站点</strong></p><p>在您想要存放博客项目的目录中，依次执行以下命令：</p><pre class="language-bash" data-language="bash"><code class="language-bash">hexo init myblog<span class="token builtin class-name">cd</span> myblog<span class="token function">npm</span> <span class="token function">install</span></code></pre><p>如果一切正常，您会看到类似如下的提示信息，表明初始化已完成：</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250224235341751.png"></p></li><li><p><strong>项目结构概览</strong></p><p>使用 VSCode 打开 <code>myblog</code> 目录，其主要文件夹和文件包括：</p><ul><li><code>_config.yml</code>: 博客的主要配置文件</li><li><code>source/_posts</code>: 存储博客文章的位置</li></ul></li></ol><hr><h3 id="预览博客"><a href="#预览博客" class="headerlink" title="预览博客"></a>预览博客</h3><p>在项目根目录下运行以下命令来清理缓存、生成静态文件并启动服务器：</p><pre class="language-bash" data-language="bash"><code class="language-bash">hexo clean <span class="token operator">&amp;&amp;</span> hexo generate <span class="token operator">&amp;&amp;</span> hexo server</code></pre><p>此时，您可以打开浏览器访问 <a href="http://localhost:4000/">http://localhost:4000</a> 查看本地博客的效果。</p><hr><h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h3><p>我们推荐使用美观且功能丰富的 <a href="https://fluid-dev.github.io/docs/getting-started/">Fluid</a> 主题。</p><ol><li><p><strong>安装主题</strong></p><p>在博客根目录中执行以下命令：</p><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> <span class="token parameter variable">--save</span> hexo-theme-fluid</code></pre></li><li><p><strong>配置主题</strong></p><p>创建并编辑 <code>_config.fluid.yml</code> 文件，将其内容从官方提供的模板复制粘贴过来。</p></li><li><p><strong>指定主题</strong></p><p>修改 <code>_config.yml</code> 文件中的 <code>theme</code> 字段为 <code>fluid</code>，同时设置语言选项：</p><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">theme</span><span class="token punctuation">:</span> fluid<span class="token key atrule">language</span><span class="token punctuation">:</span> zh<span class="token punctuation">-</span>CN</code></pre></li><li><p><strong>创建“关于”页面</strong></p><p>运行命令：</p><pre class="language-bash" data-language="bash"><code class="language-bash">hexo new page <span class="token string">"about"</span></code></pre><p>编辑 <code>/source/about/index.md</code> 文件，确保包含 <code>layout: about</code> 属性。</p></li><li><p><strong>重启服务器</strong></p><p>再次运行：</p><pre class="language-bash" data-language="bash"><code class="language-bash">hexo clean <span class="token operator">&amp;&amp;</span> hexo generate <span class="token operator">&amp;&amp;</span> hexo server</code></pre><p>浏览器刷新后即可查看新主题的效果。</p></li></ol><hr><h3 id="部署至-GitHub-Pages"><a href="#部署至-GitHub-Pages" class="headerlink" title="部署至 GitHub Pages"></a>部署至 GitHub Pages</h3><ol><li><p><strong>创建 GitHub 仓库</strong></p><p>登录 GitHub 并创建一个新的公共仓库，命名为 <code>&lt;username&gt;.github.io</code>，其中 <code>&lt;username&gt;</code> 替换为您自己的 GitHub 用户名。</p></li><li><p><strong>配置部署信息</strong></p><p>打开博客目录下的 <code>_config.yml</code> 文件，在末尾添加或修改 <code>deploy</code> 模块，填入刚创建的仓库地址：</p><pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>  <span class="token key atrule">type</span><span class="token punctuation">:</span> git  <span class="token key atrule">repo</span><span class="token punctuation">:</span> &lt;仓库克隆链接<span class="token punctuation">&gt;</span>  <span class="token key atrule">branch</span><span class="token punctuation">:</span> main</code></pre></li><li><p><strong>安装 Git 部署插件</strong></p><p>执行命令：</p><pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-deployer-git <span class="token parameter variable">--save</span></code></pre></li><li><p><strong>执行部署</strong></p><p>最后一步，运行以下命令完成部署：</p><pre class="language-bash" data-language="bash"><code class="language-bash">hexo clean <span class="token operator">&amp;&amp;</span> hexo generate <span class="token operator">&amp;&amp;</span> hexo deploy</code></pre><p>成功后，您可以通过 <code>[&lt;username&gt;.github.io](http://&lt;username&gt;.github.io)</code> 访问您的在线博客。</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 项目实操 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> blog </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>使用AI工具生成logo</title>
+      <link href="/2025/02/24/ce-ping-wen-zhang/ai-logo-sheng-cheng/"/>
+      <url>/2025/02/24/ce-ping-wen-zhang/ai-logo-sheng-cheng/</url>
+      
+        <content type="html"><![CDATA[<p>最近做博客，需要设计一下网站的logo,就找到这个网站。<strong>强烈推荐！</strong></p><p>👉<strong>网址获取方式</strong>：<br>😝有需要的小伙伴，公众号【<strong>小宇科技酷</strong>】发送关键字【<strong>2025021901</strong>】获取AI logo生成网址</p><p>废话不多说，往下看</p><p><strong>这是主页</strong></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250219231858036.png"></p><p>输入<strong>logo主体是什么</strong>?比如<strong>水果，动物，字母，数学符号</strong>等等。在输入logo名称</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250219232244289.png"></p><p>点击生成等一会看结果</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250219232559190.png"></p><p>可以看到第一个第三个，第四个都不错，结合的比较自然</p><p>哪个想修改可以点击<strong>重新混合</strong>或者<strong>高级编辑</strong></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250219233017629.png"></p><p>修改到满意就可以<strong>免费下载</strong>了</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250219233059125.png"></p><p><strong>高清套件</strong></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250219233120086.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250219230647781.png"></p><p><strong>社交媒体套件</strong></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250219233147271.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250219233206221.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250219233218897.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250219230948684.png"></p><p><strong>商业logo</strong></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250219233243966.png"></p><p><strong>打印logo</strong></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250219233702429.png"></p><p><strong>📢【立即行动，抢占AI先机！】</strong><br>AI时代，<strong>掌握工具者胜</strong>！这份清华团队亲授的“AI圣经”，助你从“被动使用”到“创新驱动”，成为人机协作的领跑者！<strong>限时免费，手慢无！</strong></p><p>👉 <strong>扫码加Q群领取</strong> 👇</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208011213750.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208012043803.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> logo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>DeepSeek使用技巧</title>
+      <link href="/2025/02/24/ce-ping-wen-zhang/deepseek-shi-yong-ji-qiao/"/>
+      <url>/2025/02/24/ce-ping-wen-zhang/deepseek-shi-yong-ji-qiao/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208013303579.png"></p><p><strong>从 DeepSeek R1 发布的那天起，我就开始写文章介绍它，没想到最近几天它竟然火爆到这种程度。</strong></p><p>不过，当我翻看评论区时，发现许多朋友并没有充分发挥 DeepSeek R1 的潜力。作为一名深度用户，我真是看得着急啊。</p><p>于是赶紧写下这篇文章，分享一些实用技巧和案例，希望能帮助大家更好地使用 DeepSeek R1，让它成为你工作和生活中的得力助手。</p><p>其实最开始接触 DeepSeek 的时候，我也只是觉得它和市面上其他工具没什么两样。但用了几次之后,才发现它能极大地提升工作和生活效率。说实话，这些技巧我以前也不知道，直到我花时间探索和总结下来，感觉就像打开了新世界的大门一样。下面就把我亲身试验后发现的几个干货和注意事项，跟大家唠唠嗑，保证你看完也能变身 DeepSeek 高手。</p><hr><h3 id="DeepSeek-的使用方式"><a href="#DeepSeek-的使用方式" class="headerlink" title="DeepSeek 的使用方式"></a><strong>DeepSeek 的使用方式</strong></h3><p>为了照顾一些刚接触 DeepSeek 的新手朋友，我先简单介绍一下如何使用它。如果你已经是熟练用户，可以直接跳过这一部分。</p><p>目前，DeepSeek 提供以下几种主要的使用方式：</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208020204796.png"></p><ol><li><strong>网页版</strong>：直接打开 <a href="https://chat.deepseek.com/">https://chat.deepseek.com/</a> 即可使用。</li><li><strong>App版</strong>：通过手机扫码下载应用程序。</li></ol><p>默认情况下，DeepSeek 使用的是 V3 模型。如果需要切换到让人惊艳的 R1 模型，只需点击“<strong>深度思考</strong>”按钮。此外，还有一个“<strong>联网搜索</strong>”功能，默认情况下 DeepSeek 使用的是几个月前的训练数据。如果你需要参考最新新闻或动态，可以启用联网搜索，让 DeepSeek R1 基于最新的网络数据回答问题。</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208020431851.png"></p><hr><h3 id="基础技巧"><a href="#基础技巧" class="headerlink" title="基础技巧"></a><strong>基础技巧</strong></h3><h4 id="直接提需求"><a href="#直接提需求" class="headerlink" title="直接提需求"></a><strong>直接提需求</strong></h4><p>首先，我们需要了解 DeepSeek R1 与其他主流大模型（如 GPT）之间的区别。GPT 等模型属于<strong>指令型大模型</strong>，它们需要用户提供详细的操作流程，才能给出令人满意的回答。例如，如果你想让 GPT 扮演一位中国老师鼓励学生参加竞赛，你需要提供类似以下的提示词：</p><blockquote><p>“请你扮演一名老师，用鼓舞人心的语气劝说学生参加数学竞赛，告诉他竞赛的重要性，并分享几个他可能从竞赛中获得的好处，比如提升逻辑思维能力、结交志同道合的朋友等。”</p></blockquote><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208020549706.png"></p><p>这样的提示词不仅需要描述具体情境（比如“扮演老师”），还需要提供额外的细节（如“提升逻辑思维能力”）。因此，在 ChatGPT 流行的时期，甚至出现了专门设计指令的岗位——提示词工程师。</p><p>而 DeepSeek R1 则属于<strong>推理型大模型</strong>，它不需要用户提供详细的流程。相反，过于详细的提示可能会限制其发挥。根据 DeepSeek 官方论文的说明，R1 模型对提示词非常敏感。为了获得最佳效果，建议用户<strong>直接描述问题</strong>即可。</p><p>举个例子，当你想让 DeepSeek 写出一位创业者在公司面临巨大危机时的内心独白，你只需简单描述问题：</p><blockquote><p>“写出一位创业者在公司连续亏损三个月后，面对员工和投资人的压力时的内心独白。”</p></blockquote><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208020721803.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208020741115.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208020805813.png"></p><p>DeepSeek R1 的回答往往会比其他模型更具戏剧性和画面感。相较于其他模型的中规中矩，DeepSeek R1 更注重细节和创造性输出。</p><p>因此，在使用 DeepSeek R1 时，我们可以把自己想象成老板，DeepSeek R1 是我们雇佣的专业助手。我们只需提出需求，剩下的工作就交给它完成。</p><hr><h3 id="万能提问模板"><a href="#万能提问模板" class="headerlink" title="万能提问模板"></a><strong>万能提问模板</strong></h3><p>虽然直接提问题已经能够得到不错的答案，但如果在提问时加入“<strong>背景描述</strong>”，效果会更好。背景描述包括以下内容：</p><ul><li>我是谁（如：我是一个大学生）。</li><li>我的当前水平（如：我是编程初学者）。</li><li>我希望 DeepSeek 扮演的角色（如：你是一名资深程序员）。</li></ul><p>此外，如果回答不符合预期，可以增加一些<strong>约束条件</strong>，进一步优化输出内容。例如：</p><blockquote><p>“我是大学生（背景），怎样用 Python 写一个简单的贪吃蛇游戏（需求），代码尽量简洁明了（约束条件）。”</p></blockquote><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208020913194.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208020953714.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208021007300.png"></p><p>通过这种方式，DeepSeek R1 不仅能够提供详细的代码示例，还会附上运行步骤和注意事项。如果你希望它的回答更加具体，还可以进一步要求它详细展开某一部分内容。</p><p>总结来说，一个简单的提问模板是：<br> <strong>背景 + 需求 + 约束条件（可选）</strong>。</p><hr><h3 id="让-DeepSeek-“说人话”"><a href="#让-DeepSeek-“说人话”" class="headerlink" title="让 DeepSeek “说人话”"></a><strong>让 DeepSeek “说人话”</strong></h3><p>在处理一些专业问题时，DeepSeek 的回答可能会使用大量专业术语。如果你是相关领域的专业人士，这些术语可能会帮助你快速理解问题。但如果你对该领域不熟悉，这些术语可能会让人感到晦涩难懂。</p><p>这种情况下，你只需在提示词中加入“<strong>用大白话解释</strong>”、“通俗易懂”、“说人话”等要求，就能让 DeepSeek 给出更易理解的答案。</p><p>例如，当我问 DeepSeek “为什么它的运行速度这么快”时，原回答可能充满了技术术语。而在加入“用大白话解释”后，DeepSeek 会用生动的比喻将复杂的概念转化为通俗易懂的语言，让人一听就懂。</p><hr><h3 id="模仿回答"><a href="#模仿回答" class="headerlink" title="模仿回答"></a><strong>模仿回答</strong></h3><p>DeepSeek 的另一个强大功能是模仿能力。通过提示词如“模仿 X 的语气”或“以 X 的口吻”，你可以让 DeepSeek 模仿特定人物、风格或语气回答问题。</p><p>例如，你可以让它模仿一位大学教授，用严谨的逻辑分析某个学术问题；或者模仿一位美食博主，用轻松幽默的语气推荐一道家常菜。甚至可以让它模仿古代诗人，为你写一首描述春天的诗。</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208021056065.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208021136646.png"></p><hr><h3 id="高级技巧"><a href="#高级技巧" class="headerlink" title="高级技巧"></a><strong>高级技巧</strong></h3><h4 id="多模型组合"><a href="#多模型组合" class="headerlink" title="多模型组合"></a><strong>多模型组合</strong></h4><p>对于复杂场景，可以结合 DeepSeek R1 与 GPT-4o 或 Claude 3.5 等模型的优势。例如，先用 DeepSeek R1 提出问题解决方案，再用指令型大模型生成具体的内容。</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208021416535.png"></p><p>拿到这个提示词后，我们再找个 AI 出图工具就能得到图片了。</p><p>一般来说，英文提示词的效果会优于中文提示词，所以我一般都是让 DeepSeek 直接生成英文提示词。这个组合蛮适合帮我们生成漫画图、文章封面图，甚至制作视频。这里再推荐几个常用生图的 AI 工具：</p><ol><li>即梦 AI：<a href="https://jimeng.jianying.com/ai-tool/image/generate">https://jimeng.jianying.com/ai-tool/image/generate</a></li><li>Midjourney: <a href="http://www.midjourney.com/">www.midjourney.com/</a></li><li>ChatGPT、豆包等大模型。</li></ol><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208021524051.png"></p><h4 id="业务分析"><a href="#业务分析" class="headerlink" title="业务分析"></a><strong>业务分析</strong></h4><p>通过“联网搜索”，DeepSeek 可以实时获取最新信息，甚至通过上传附件来精准分析数据。这使得它非常适合用来制定策略或进行数据分析。以内容创作为例，你可以让 DeepSeek 分析某个平台的热门账号，并生成详细的运营计划。</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208021729703.png"></p><p>搜索有来源</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208021748934.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250208021812297.png"></p><hr><h3 id="DeepSeek-的局限性"><a href="#DeepSeek-的局限性" class="headerlink" title="DeepSeek 的局限性"></a><strong>DeepSeek 的局限性</strong></h3><p>尽管 DeepSeek 强大，但它在以下几类问题上仍有局限：</p><h5 id="1-实时性与知识时效性"><a href="#1-实时性与知识时效性" class="headerlink" title="1. 实时性与知识时效性"></a>1. <strong>实时性与知识时效性</strong></h5><ul><li><strong>知识截止日期</strong>：模型的训练数据通常截止到特定时间（例如2023年12月），无法获取此后的事件、政策或技术更新（如2024年的新闻或科研成果）。</li><li><strong>实时信息缺失</strong>：无法直接查询动态信息（如实时天气、股市行情、最新社交媒体动态），需依赖外部接口补充。</li></ul><h5 id="2-领域专业深度不足"><a href="#2-领域专业深度不足" class="headerlink" title="2. 领域专业深度不足"></a>2. <strong>领域专业深度不足</strong></h5><ul><li><strong>泛化与专精的平衡</strong>：虽然能覆盖多领域知识，但在高度专业化的领域（如尖端医学、量子物理）可能缺乏深度，回答易停留在科普层面。</li><li><strong>行业经验依赖</strong>：对依赖实践经验的领域（如法律案件具体操作、临床诊断）可能给出理论建议，但无法替代专业人士判断。</li></ul><h5 id="3-逻辑推理与复杂任务的局限性"><a href="#3-逻辑推理与复杂任务的局限性" class="headerlink" title="3. 逻辑推理与复杂任务的局限性"></a>3. <strong>逻辑推理与复杂任务的局限性</strong></h5><ul><li><strong>多步推理容错率低</strong>：在复杂数学证明、编程调试或长链条逻辑推演中，可能出现中间步骤错误，需用户自行验证。</li><li><strong>上下文理解限制</strong>：超长对话中可能遗忘早期细节，或对模糊表述产生歧义（例如代词指代不明确时）。</li></ul><h4 id="4-多模态处理能力"><a href="#4-多模态处理能力" class="headerlink" title="4. 多模态处理能力"></a>4. <strong>多模态处理能力</strong></h4><ul><li><strong>文本为主</strong>：当前版本（以文本交互为核心）无法直接处理图片、音频、视频内容（需依赖附加工具解析）。</li><li><strong>生成内容可控性</strong>：虽能生成代码、文案等，但格式或风格可能需多次调整（例如特定排版需求）。</li></ul><h5 id="5-伦理与数据偏见风险"><a href="#5-伦理与数据偏见风险" class="headerlink" title="5. 伦理与数据偏见风险"></a>5. <strong>伦理与数据偏见风险</strong></h5><ul><li><strong>隐性偏见</strong>：训练数据中隐含的社会文化偏见可能影响回答（如性别角色刻板印象），尽管已通过算法优化减少此类问题。</li><li><strong>价值观对齐</strong>：对涉及伦理争议的问题（如政治敏感话题）可能回避或提供标准化回复，而非个性化观点。</li></ul><h5 id="6-创造力与情感交互"><a href="#6-创造力与情感交互" class="headerlink" title="6. 创造力与情感交互"></a>6. <strong>创造力与情感交互</strong></h5><ul><li><strong>创意内容模板化</strong>：生成的诗歌、故事等创意文本可能缺乏人类作家的情感深度或创新突破。</li><li><strong>情感理解局限</strong>：能模拟共情表达（如安慰用户），但本质是基于模式识别，无真实情感体验。</li></ul><h5 id="7-资源依赖与使用门槛"><a href="#7-资源依赖与使用门槛" class="headerlink" title="7. 资源依赖与使用门槛"></a>7. <strong>资源依赖与使用门槛</strong></h5><ul><li><strong>算力与响应速度</strong>：复杂任务需较高计算资源，可能导致响应延迟（尤其在高峰期）。</li><li><strong>网络依赖性</strong>：离线环境无法使用，且对网络稳定性要求较高。</li></ul><hr><h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a><strong>结语</strong></h3><p>从去年 ChatGPT 的爆火到现在 DeepSeek R1 的横空出世，AI 正在以惊人的速度渗透进我们的生活。就像我们如今离不开智能手机一样，未来十年，AI 也将成为我们生活中不可或缺的一部分。</p><p>希望这篇文章能帮助你更好地使用 DeepSeek。如果觉得有用，欢迎分享给家人朋友，让更多人受益于 AI 工具的便利！另外，我还整理了一些实用的 DeepSeek 资料，免费分享给大家，感兴趣的朋友可以关注获取！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> deepseek </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>DeepSeek 6平替.md</title>
+      <link href="/2025/02/24/ce-ping-wen-zhang/deepseek-ping-ti/"/>
+      <url>/2025/02/24/ce-ping-wen-zhang/deepseek-ping-ti/</url>
+      
+        <content type="html"><![CDATA[<p>最近收到不少粉丝私信，都在吐槽DeepSeek频繁的”服务器繁忙”提示。作为AI界的当红炸子鸡，DeepSeek确实好用但架不住用户太多！不过别担心，这些接入了满血版DeepSeek-R1的国产工具，或许能给你带来意外惊喜——</p><hr><h2 id="01-腾讯元宝-微信生态的AI管家"><a href="#01-腾讯元宝-微信生态的AI管家" class="headerlink" title="01 腾讯元宝 | 微信生态的AI管家"></a><strong>01 腾讯元宝 | 微信生态的AI管家</strong></h2><p><a href="https://yuanbao.tencent.com/">官网直达</a><br><img src="https://greatsawyer.github.io/imgRepo/img/image-20250218232535959.png">作为腾讯出品的AI助手，元宝不仅搭载DeepSeek-R1满血版模型，更独享微信生态的10亿级内容资源。实测单次可解析50份文档（PDF/Word全支持），还能实时抓取公众号最新资讯，写报告查资料简直不要太顺手！</p><hr><h2 id="02-秘塔AI-学术研究者的外挂大脑"><a href="#02-秘塔AI-学术研究者的外挂大脑" class="headerlink" title="02 秘塔AI | 学术研究者的外挂大脑"></a><strong>02 秘塔AI | 学术研究者的外挂大脑</strong></h2><p><a href="https://metaso.cn/">立即体验</a><br><img src="https://greatsawyer.github.io/imgRepo/img/image-20250218232616172.png"><br>专注深度搜索的秘塔AI，结合DeepSeek的推理能力可自动生成带文献引用的分析报告。特别适合论文写作和行业调研，独有的”研究模式”能快速梳理复杂文献的时间线，学术党必备神器！</p><hr><h2 id="03-360纳米搜索-多模型切换专家"><a href="#03-360纳米搜索-多模型切换专家" class="headerlink" title="03 360纳米搜索 | 多模型切换专家"></a><strong>03 360纳米搜索 | 多模型切换专家</strong></h2><p><a href="https://www.n.cn/?fromsou=1">官网入口</a><br><img src="https://greatsawyer.github.io/imgRepo/img/image-20250218232649023.png">聚合16家AI模型的超级工具箱，DeepSeek-R1满血版+360专线双通道保障响应速度。Windows客户端支持离线使用，游戏攻略、视频脚本、会议纪要等场景实测响应速度比官网快3倍！</p><hr><h2 id="04-支付宝百宝箱-隐藏的语音黑科技"><a href="#04-支付宝百宝箱-隐藏的语音黑科技" class="headerlink" title="04 支付宝百宝箱 | 隐藏的语音黑科技"></a><strong>04 支付宝百宝箱 | 隐藏的语音黑科技</strong></h2><p><a href="https://tbox.alipay.com/pro/community">发现入口</a><br><img src="https://greatsawyer.github.io/imgRepo/img/image-20250218232719585.png">藏在支付宝里的宝藏功能！支持语音输入和图片识别，长辈和孩子都能轻松上手。虽然看不到思考过程，但回答质量与官方版无异，买菜算账、旅游攻略等生活场景尤其好用。</p><hr><h2 id="05-天工AI-即开即用的极简派"><a href="#05-天工AI-即开即用的极简派" class="headerlink" title="05 天工AI | 即开即用的极简派"></a><strong>05 天工AI | 即开即用的极简派</strong></h2><p><a href="https://www.tiangong.cn/">快速体验</a><br><img src="https://greatsawyer.github.io/imgRepo/img/image-20250218232747030.png">昆仑万维出品的低调实力派，无需注册直接使用DeepSeek-R1满血版。适合需要快速获取答案的职场场景，生成周报、整理会议纪要等基础办公需求响应速度稳定在2秒内。</p><hr><p><strong>✨使用小贴士</strong><br>建议根据需求组合使用：学术研究首选秘塔AI+腾讯元宝，生活场景用支付宝百宝箱，多任务处理选360纳米搜索。你还发现哪些好用的AI工具？欢迎在评论区交流分享！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> deepseek </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>知乎直答DeepSeek-R1</title>
+      <link href="/2025/02/24/ce-ping-wen-zhang/zhi-hu-zhi-da-deepseek-r1/"/>
+      <url>/2025/02/24/ce-ping-wen-zhang/zhi-hu-zhi-da-deepseek-r1/</url>
+      
+        <content type="html"><![CDATA[<p><strong>今日（2025年2月11日）</strong>，知乎旗下AI搜索产品“知乎直答”宣布重磅升级——正式接入“满血版”DeepSeek-R1模型！这一结合不仅标志着AI搜索能力的全面革新，更开启了“专业知识库×顶级推理能力”的智能新纪元。</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250211222738504.png" alt="image-20250211222738504"></p><hr><p>DeepSeek-R1作为国内顶尖大模型，以<strong>超强逻辑推演能力</strong>和<strong>结构化输出</strong>著称。其独特之处在于：</p><ul><li><strong>跳过监督微调（SFT）</strong>：通过强化学习（RL）技术，仅凭少量人工标注数据实现推理能力的自我进化；</li><li><strong>“尤里卡时刻”涌现</strong>：在训练中，模型甚至展现类似人类的反思行为，主动延长思考时间以优化解决方案；</li><li><strong>专业领域超越OpenAI</strong>：在工程代码（SWE-Bench）、数学竞赛（AIME 2024）等场景中表现优于OpenAI o1模型。</li></ul><p>此次接入后，知乎直答将依托<strong>5000万+中英文文献</strong>及社区优质语料，让搜索结果更精准、解答逻辑更严密。</p><hr><h3 id="1-知识库功能上线：打造你的“第二大脑”"><a href="#1-知识库功能上线：打造你的“第二大脑”" class="headerlink" title="1. 知识库功能上线：打造你的“第二大脑”"></a><strong>1. 知识库功能上线：打造你的“第二大脑”</strong></h3><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250211222602010.png" alt="image-20250211222602010"></p><p>同步推出的“知识库”功能，堪称知识工作者的效率神器：</p><ul><li><strong>多源整合</strong>：支持本地文件、网页收藏、RSS订阅、知乎收藏夹一键导入；</li><li><strong>智能分析</strong>：通过DeepSeek-R1快速提取论文、文档中的核心信息，生成结构化摘要；</li><li><strong>个性化管理</strong>：用户可分类存储、标签化检索，构建专属知识体系。</li></ul><p>无论是学术研究还是行业报告，这一功能将碎片化信息转化为系统化资产，真正实现“知识即战力”。</p><hr><h3 id="2-用户体验升级：从“搜索答案”到“获得洞察”"><a href="#2-用户体验升级：从“搜索答案”到“获得洞察”" class="headerlink" title="2. 用户体验升级：从“搜索答案”到“获得洞察”"></a><strong>2. 用户体验升级：从“搜索答案”到“获得洞察”</strong></h3><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250211224856143.png" alt="image-20250211224856143"></p><ul><li><strong>通用搜索</strong>：日常问题解答更流畅，例如“如何用Python实现图像识别？”模型会分步骤拆解代码逻辑；</li><li><strong>专业搜索</strong>：深度解析学术论文、技术文档，例如输入“量子计算最新进展”，可获分领域综述与关键论文推荐；</li><li><strong>溯源增强</strong>：所有结果均标注来源，确保信息可信度1。</li></ul><hr><h3 id="3-市场反响热烈：知乎股价单日暴涨15"><a href="#3-市场反响热烈：知乎股价单日暴涨15" class="headerlink" title="3. 市场反响热烈：知乎股价单日暴涨15%"></a><strong>3. 市场反响热烈：知乎股价单日暴涨15%</strong></h3><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250211222853492.png" alt="image-20250211222853492"></p><p>消息发布后，知乎港股（02390.HK）收盘大涨15.01%，美股（ZH.US）前一日涨幅亦超15%5。市场普遍认为，此次合作标志着知乎从“内容社区”向“AI+知识服务”的转型迈出关键一步，未来或通过广告、企业服务等模式拓展商业化空间。</p><p>当知乎的优质内容遇上DeepSeek-R1的顶级推理，AI搜索不再是简单的信息匹配，而是<strong>深度知识服务</strong>的开始。无论是学生、研究者，还是职场人，都能在这场智能革命中，更高效地获取价值、创造价值。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> deepseek </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Midreal-AI写小说.md</title>
+      <link href="/2025/02/24/ce-ping-wen-zhang/midreal-ai-xie-xiao-shuo/"/>
+      <url>/2025/02/24/ce-ping-wen-zhang/midreal-ai-xie-xiao-shuo/</url>
+      
+        <content type="html"><![CDATA[<p>今天给大家分享的Midreal AI是一款由<a href="https://so.csdn.net/so/search?q=MIT&amp;spm=1001.2101.3001.7020">MIT</a>、NYU、剑桥、普林斯顿联合打造的AI生成小说产品。我个人认为，这绝对是针对普通网文作者的降维打击！我自己体验了一下，不得不说真的非常nice。</p><p>👉<strong>网址获取方式</strong>：<br>😝有需要的小伙伴，公众号【<strong>小宇科技酷</strong>】发送关键字【<strong>2025021301</strong>】获取Midreal网址</p><p>话不多说开始上图，主页是暗黑风格</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250213004721759.png"></p><p>随便输入一个小说的开头，会自动起个书名</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250213223758028.png"></p><p>会自动生成小说的主要人物以及画像</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250213224025698.png"></p><p>点击人物照片可以进行对话</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250213224352942.png"></p><p>每次生成一段文字之后会让你自己决定剧情走向</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250213224604429.png"></p><p>剧情会自动配图</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250213224845472.png"></p><p>最后每天有免费额度</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250213224737232.png"></p><p>我生成的故事完整版如下：</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250213225027958.png"></p><p>下面是我自己对MidReal的总结。  </p><ul><li>Midreal AI的核心竞争力在于其前沿技术，尤其是<strong>内存跨越技术和长篇写作能力</strong>。</li><li>解决了以往文本互动游戏中连贯性难以维持的问题。该技术能够实现近乎无限的记忆保留，确保故事线连贯无缝，提供用户一个持久的故事体验。</li><li>不仅是小说生成器，Midreal AI能够根据用户输入生成引人入胜的长篇故事。这在大型语言模型中是罕见的，展示了其在文本生成、故事构架和情节发展上的深度理解。</li><li>目前支持英文和中文，未来还将添加更多语言，包括日语。这使得Midreal AI能够跨越语言障碍，服务更广泛的用户群体。</li><li>不仅是游戏或小说生成器，Midreal AI是一个全新的故事叙述平台，为用户提供前所未有的创造空间和自由度。通过创新技术，Midreal AI不仅改变了用户与故事互动的方式，也在人工智能领域中开创了新的可能性。</li><li>适用于游戏玩家、小说爱好者、电视剧和电影迷，以及同人小说创作者，为他们提供一个无限创造的空间。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> deepseek </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>微信接入deepseek.md</title>
+      <link href="/2025/02/24/re-dian-wen-zhang/wei-xin-jie-ru-deepseek/"/>
+      <url>/2025/02/24/re-dian-wen-zhang/wei-xin-jie-ru-deepseek/</url>
+      
+        <content type="html"><![CDATA[<p>2月15日起，部分用户发现搜索框<strong>惊现神秘入口</strong>——点击对话框顶部的搜索栏，即可解锁全新”AI搜索”功能。此次更新最大的亮点在于接入了深度求索（DeepSeek）最新研发的R1大模型，通过”深度思考”模式为用户提供多维度的智能服务。</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250217225729638.png"></p><p>据实测，已获得测试资格的用户在搜索框输入问题时，系统会进行长达30秒的深度推理，<strong>整合微信公众号、视频号等生态内容，同时实时抓取全网最新资讯</strong>。有用户尝试询问”如何用微信预约故宫门票”，不仅获得分步骤指引，还同步展示了官方预约通道和近期参观攻略。</p><p>值得关注的是，DeepSeek生态正在全球范围快速扩张。数据显示，已有包括三大通信运营商、15家芯片制造商、200余家科技企业在内的行业巨头加入合作阵营。更引人注目的是，微软Azure、英伟达CUDA平台等国际技术领军者已宣布完成系统适配，为后续全球化应用铺路。</p><p>目前该功能仍处于分批开放阶段，建议同时关注微信更新提示和腾讯元宝的版本推送。随着计算集群的持续扩容，预计3月初将实现全量用户覆盖，<strong>这场由大模型驱动的智能革命正在重新定义移动互联网的搜索体验</strong>。</p><p>据介绍，此次接入DeepSeek的微信AI搜索功能，<strong>不仅整合了微信公众号等腾讯生态内的信息源，还支持联网搜索，能为用户提供更全面、实时、准确的回答</strong>。</p><p>目前，<strong>该功能正灰度测试中，仅部分用户可体验</strong>。未获得测试资格的用户可通过下载**“腾讯元宝”**App，<strong>免费使用DeepSeek-R1满血版</strong>。</p><p>腾讯元宝APP版直接在手机应用商店搜索即可下载</p><p>下载后打开后页面很干净，和原生deepseek一样</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250217223549830.png"></p><p>点击最上方可以切换到deepseek推理模型</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250217223658814.png"></p><p>不过使用混元模型的数据是很多是来自于微信公众号的高质量，如果想搜索微信公众号文章建议使用混元模型</p><p>点击左上方抽屉按钮可以看到<strong>全部应用</strong></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250217223901435.png"></p><p>全部应用中有很多工具可以使用，比如图像，视频等工具，这点是在deepseek功能基础是做了增强</p><p><img src="C:\Users\hsy\AppData\Roaming\Typora\typora-user-images\image-20250217224159782.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> deepseek </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>用deepseek逆袭.md</title>
+      <link href="/2025/02/24/re-dian-wen-zhang/yong-deepseek-ni-xi/"/>
+      <url>/2025/02/24/re-dian-wen-zhang/yong-deepseek-ni-xi/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250223000105077.png"> </p><p><strong>第一批用DeepSeek的人已经偷偷买房买车，而你还在问“这是什么”？</strong>  </p><hr><p><strong>你刷到这条推送的时候，已经有2000个普通人靠DeepSeek月入过万了！</strong><br>这不是危言耸听。2025年2月，国产AI工具DeepSeek以“碾压级”性能横扫全网，朋友圈、抖音、小红书全被它刷屏。但更可怕的是——<strong>有人用它4天狂赚20万</strong>，有人靠它清空库存、卖爆全球，甚至有人连初中都没毕业，却通过倒卖DeepSeek教程年入百万。  </p><p>而你，还在纠结“AI会不会抢我饭碗”？<br><strong>醒醒吧！</strong><br>这世上最残酷的差距，不是“用不用AI”，而是“有人用AI赚你的钱，而你只会刷短视频”。  </p><hr><h3 id="一、DeepSeek凭什么能让你暴富？"><a href="#一、DeepSeek凭什么能让你暴富？" class="headerlink" title="一、DeepSeek凭什么能让你暴富？"></a>一、DeepSeek凭什么能让你暴富？</h3><p><strong>1. 技术红利：一场“零门槛”的财富洗牌</strong><br>DeepSeek的恐怖之处，在于它彻底打破了“技术垄断”。  </p><ul><li><strong>写文案</strong>：输入关键词，10秒生成100条爆款标题；</li></ul><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250222234734557.png"></p><ul><li><strong>做视频</strong>：拍一段“12345”口播，AI自动翻译36国语言；</li></ul><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250222235305510.png"></p><ul><li><strong>搞数据</strong>：分析市场趋势、预测爆款，连特朗普关税政策都能提前规避。</li></ul><p><strong>2. 财富真相：信息差就是印钞机</strong><br>你以为技术透明了就能公平竞争？大错特错！  </p><ul><li><strong>案例1</strong>：某博主将去年ChatGPT课程文案里的“GPT”替换成“DeepSeek”，同一套话术，3天收割30万；  </li><li><strong>案例2</strong>：闲鱼上一份标价9.9元的“DeepSeek提示词大全”，被1000多人疯抢；  </li><li><strong>真相</strong>：80%的人连DeepSeek官网都没打开过，这就是你赚钱的机会！</li></ul><hr><h3 id="二、普通人用DeepSeek搞钱的6大野路子（亲测有效）"><a href="#二、普通人用DeepSeek搞钱的6大野路子（亲测有效）" class="headerlink" title="二、普通人用DeepSeek搞钱的6大野路子（亲测有效）"></a>二、普通人用DeepSeek搞钱的6大野路子（亲测有效）</h3><p><strong>方法1：自媒体矩阵——躺着赚流量钱</strong><br><strong>操作指南</strong>：  </p><ul><li><strong>爆款标题</strong>：用DeepSeek输入“2025赚钱焦虑”，生成《35岁失业，我用AI月入3万：有些钱，活该你赚不到》；  </li><li><strong>批量生产</strong>：1分钟生成小红书笔记模板，新号春节涨粉过万；  </li><li><strong>变现路径</strong>：流量主广告+带货佣金+私域卖课，月入2万只是底线。</li></ul><p><strong>“你熬夜写稿时，00后大学生用AI一天发100条笔记，平台算法都追着他喂流量！”</strong>  </p><p><strong>方法2：知识付费——割韭菜？不，这是“认知税”</strong><br><strong>暴利真相</strong>：  </p><ul><li>卖课：录制一段“DeepSeek写朋友圈文案”教程，挂载知识星球分销，每单躺赚11元；  </li><li>社群：建个199元/年的微信群，每天发3条AI技巧，6000人付费=净赚120万；  </li><li><strong>核心逻辑</strong>：信息差永不过时，总有人连Ctrl+C/V都不会。</li></ul><p><strong>“你嘲笑别人交‘智商税’时，聪明人早已靠‘信息差税’买了第二套房。”</strong>  </p><p><strong>方法3：跨境带货——义乌老板的“印钞密码”</strong><br><strong>案例复盘</strong>：  </p><ul><li>义乌老板娘傅江燕用DeepSeek生成多语种带货视频，10分钟制作→日均卖空2000万双袜子；  </li><li><strong>秘诀</strong>：AI自动适配中东文化禁忌、拉美音乐偏好，连“特朗普加税”都能提前预警。</li></ul><p><strong>“你还在和国内同行卷价格，有人已用AI收割全球</strong>——<strong>世界那么大，但暴富窗口只开3个月</strong>。”  </p><p><strong>方法4：数字人直播——24小时“印钞流水线”</strong><br><strong>技术组合</strong>：  </p><ul><li>DeepSeek写脚本 + 小娃数字人出镜，3分钟生成一条带货视频；  </li><li>某家居店实测：30天销售额从5万飙到20万，成本仅299元/月。</li></ul><p><strong>“请主播？写脚本？剪视频？——2025年了，你还在用‘人肉电池’模式创业？”</strong>  </p><p><strong>方法5：数据选品——抢占下一个“爆款风口”</strong><br><strong>实操案例</strong>：  </p><ul><li>用DeepSeek分析TikTok热词，提前囤货“奥运冠军同款发夹”，亚马逊Prime Day狂销10万单；  </li><li><strong>黑科技</strong>：输入“2025夏季流行元素”，AI直接输出《欧美Z世代爆款预测报告》。</li></ul><p><strong>“你凭直觉选品时，对手用AI预判了你的预判</strong>——<strong>商业战场上，迟钝一秒，库存压十年</strong>。”  </p><p><strong>方法6：私域变现——朋友圈成“提款机”</strong><br><strong>暗黑玩法</strong>：  </p><ul><li>用DeepSeek批量生成“焦虑文案”：“35岁被裁员，靠AI逆袭：你的稳定，正在杀死你”；  </li><li>配合数字人打造“创业导师”人设，私域转化率提升80%。</li></ul><p><strong>“你屏蔽微商时，高手用AI把朋友圈变成了自动提款机——不是生意难做，是你的思维还停在2015。”</strong>  </p><hr><h3 id="三、警告！DeepSeek搞钱的3大陷阱"><a href="#三、警告！DeepSeek搞钱的3大陷阱" class="headerlink" title="三、警告！DeepSeek搞钱的3大陷阱"></a>三、警告！DeepSeek搞钱的3大陷阱</h3><p><strong>1. 假教程横行：你交的学费，正在养活“赛博乞丐”</strong>  </p><ul><li>案例：199元买的“AI绘画课”，实为某软件广告；  </li><li>破解法：只学官方免费教程，警惕“三天精通”“躺赚秘籍”。</li></ul><p><strong>2. 伪需求幻觉：AI是杠杆，但你需要支点</strong>  </p><ul><li>真相：DeepSeek+数字人带货很火，但如果你连选品都不会，AI只会放大你的亏损；  </li><li>忠告：先跑通最小盈利闭环，再上AI加速器。</li></ul><p><strong>3. 政策雷区：这些钱，赚了也得吐出来</strong>  </p><ul><li>风险：用AI生成虚假宣传视频，已被市监局列入2025年重点打击名单；  </li><li>红线：金融、医疗、教育等领域，AI工具使用需备案。</li></ul><hr><h3 id="四、立即行动！抓住红利期的最后3步"><a href="#四、立即行动！抓住红利期的最后3步" class="headerlink" title="四、立即行动！抓住红利期的最后3步"></a>四、立即行动！抓住红利期的最后3步</h3><p><strong>1. 抢占生态位（24小时内完成）</strong>  </p><ul><li>注册DeepSeek账号，用“搞钱”“副业”等关键词生成100条内容模板；  </li><li>立刻发布到小红书/视频号，标签加#DeepSeek暴富攻略。</li></ul><p><strong>2. 打造变现闭环（3天见收益）</strong>  </p><ul><li>选择1个平台主攻（推荐小红书+私域）；  </li><li>用AI生成《2025年AI搞钱手册》，定价9.9元，当天回本。</li></ul><p><strong>3. 放大规模（1个月躺赚）</strong>  </p><ul><li>招募分销团队：每单分佣50%，让大学生、宝妈替你卖课；  </li><li>矩阵号操作：10个账号铺量，总有一个爆款。</li></ul><hr><p><strong>“看完这篇文章还无动于衷的人，注定被时代抛弃！<br>——因为当AI开始替代工作时，聪明人早已用AI替代了‘赚钱’本身。”</strong>  </p><p><strong>立即扫码关注，免费领取</strong>：<br>①《DeepSeek搞钱实操手册》（含50个暴利项目）；  </p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250222223336418.png"></p><p>②  加微验证发私信暗号“逆袭”，拉你进2025年AI搞钱内测群（仅限前500人）。   </p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250222235219395.png"></p><p><strong>记住：</strong><br>第一批用淘宝的人身家过亿，<br>第一批玩抖音的人别墅靠海，<br>而2025年，<strong>所有暴富故事只会属于DeepSeek玩家</strong>。<br><strong>你，还要错过多少次时代红利？</strong>  </p><hr><p><strong>另外本人精心整理的清华弹deepseek资料，免费送给大家</strong>！</p><p><strong>相关资料获取方式：</strong></p><p>第一步：点亮本文，【<strong>点赞+在看</strong>】</p><p>第二步：<strong>公众号</strong>发送【20250223】即可获取</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250223000744307.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> deepseek </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>清华DeepSeek从入门到精通.md</title>
+      <link href="/2025/02/24/zi-liao-wen-zhang/qing-hua-deepseek-cong-ru-men-dao-jing-tong/"/>
+      <url>/2025/02/24/zi-liao-wen-zhang/qing-hua-deepseek-cong-ru-men-dao-jing-tong/</url>
+      
+        <content type="html"><![CDATA[<h1 id="清华104页DeepSeek“黑科技”手册流出！写代码、做爆款、搞数据，打工人速存！"><a href="#清华104页DeepSeek“黑科技”手册流出！写代码、做爆款、搞数据，打工人速存！" class="headerlink" title="清华104页DeepSeek“黑科技”手册流出！写代码、做爆款、搞数据，打工人速存！"></a><strong>清华104页DeepSeek“黑科技”手册流出！写代码、做爆款、搞数据，打工人速存！</strong></h1><p><strong>🌟【重磅福利！清华团队打造AI“秘籍”】</strong><br>还在为如何高效使用DeepSeek发愁？清华大学新闻与传播学院元宇宙文化实验室余梦珑博士后团队<strong>权威出品</strong>《DeepSeek：从入门到精通》！这份104页的<strong>AI学习宝典</strong>，从零基础到高阶技巧全覆盖，助你解锁国产AI工具的全部潜能！无需付费、无需套路，<strong>关注公众号【小宇科技酷】发送关键字【清华deepseek】免费领</strong>，开启你的智能进阶之路。</p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250212221523690.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250212221547276.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250212221753758.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250212221811433.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250212221823110.png"></p><p><img src="https://greatsawyer.github.io/imgRepo/img/image-20250212221833553.png"></p><hr><p><strong>📚【手册核心亮点】</strong><br>1️⃣ <strong>权威深度，拒绝“水货”</strong></p><ul><li>由清华团队耗时数月打磨，<strong>系统解析DeepSeek的底层逻辑</strong>，包括模型架构、推理机制、多模态处理等核心技术，远超市面“说明书式”教程。</li><li><strong>独家方法论</strong>：独创“SPECTRA任务分解法”“三链融合模型”，教你如何用AI解决复杂任务，告别“生成即废稿”的尴尬。</li></ul><p>2️⃣ <strong>实战为王，秒变AI高手</strong></p><ul><li><strong>文本创作</strong>：从营销文案到学术摘要，教你用一句话生成爆款内容；</li><li><strong>代码辅助</strong>：Python代码自动生成、调试优化，开发者效率提升50%；</li><li><strong>数据分析</strong>：上传Excel秒出趋势报告，手写笔记也能转结构化数据；</li><li><strong>多语言翻译</strong>：告别机翻尴尬，本地化表达精准适配。</li></ul><p>3️⃣ <strong>避坑指南，拒绝AI“幻觉”</strong></p><ul><li>揭秘AI生成内容的常见误区，提供<strong>幻觉规避技巧</strong>，确保输出结果真实可靠；</li><li>提示词设计“黄金法则”：从“简洁指令”到“结构化引导”，让AI听懂你的潜台词。</li></ul><hr><p><strong>🎯【谁需要这本手册？】</strong></p><ul><li><strong>学生党</strong>：论文降重、解题思路、语言学习，作业效率飙升；</li><li><strong>打工人</strong>：周报生成、会议纪要、PPT大纲，告别熬夜加班；</li><li><strong>创作者</strong>：短视频脚本、小说大纲、爆款标题，灵感永不枯竭；</li><li><strong>开发者</strong>：代码生成、BUG修复、文档整理，开发周期缩短。</li></ul><hr>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI工具 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> deepseek </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>树的遍历框架</title>
       <link href="/2020/04/24/shu-de-bian-li-kuang-jia/"/>
       <url>/2020/04/24/shu-de-bian-li-kuang-jia/</url>
@@ -220,11 +445,11 @@
       
         <tags>
             
-            <tag> 递归 </tag>
+            <tag> 队列 </tag>
             
             <tag> 栈 </tag>
             
-            <tag> 队列 </tag>
+            <tag> 递归 </tag>
             
         </tags>
       
