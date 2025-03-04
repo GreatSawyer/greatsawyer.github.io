@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="接口回调解析, AI,Java,Python,Spring">
+    <meta name="keywords" content="【干货分享】6 个 AI 剧本生成器，帮你自动生成电影、短剧、短视频剧本.md, AI,Java,Python,Spring">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>接口回调解析 | 程序员小宇</title>
+    <title>【干货分享】6 个 AI 剧本生成器，帮你自动生成电影、短剧、短视频剧本.md | 程序员小宇</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -312,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">接口回调解析</h1>
+                    <h1 class="description center-align post-title">【干货分享】6 个 AI 剧本生成器，帮你自动生成电影、短剧、短视频剧本.md</h1>
                 </div>
             </div>
         </div>
@@ -433,8 +433,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%8E%A5%E5%8F%A3/">
-                                <span class="chip bg-color">接口</span>
+                            <a href="/tags/%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90AI/">
+                                <span class="chip bg-color">文本生成AI</span>
                             </a>
                         
                     </div>
@@ -445,8 +445,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/java/" class="post-category">
-                                java
+                            <a href="/categories/AI%E5%B7%A5%E5%85%B7/" class="post-category">
+                                AI工具
                             </a>
                         
                     </div>
@@ -458,7 +458,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-24
+                    2025-03-03
                 </div>
                 
 
@@ -482,64 +482,81 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="为什么会有接口回调？什么是接口回调？"><a href="#为什么会有接口回调？什么是接口回调？" class="headerlink" title="为什么会有接口回调？什么是接口回调？"></a>为什么会有接口回调？什么是接口回调？</h2><p>其实这两个问题是一个问题，知道了接口回调的原理自然就知道了为什么会有这么个东西。我们知道java中接口是不可以直接创建实例的，那么问题来了，假如我把一个接口声明为一个变量，那么我执行这个接口中的方法，接口没有实例它该怎么办呢？啊哈，这里自然又改出现java中的另一个特性—“多态”，这时java虚拟机自然会去找其子类，调用其子类中已经重载的该方法，这里就是接口回调的本质！！<br>我们在网络请求等耗时的操作的时候会使用到该机制，用来把得到的数据传回主线程中。</p>
-<h2 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h2><p>比如我写一个工具，下载任务，下载任务可能成功，可能失败。为了解耦，我的这个下载工具类只能专门用来下载，如何处理成功和失败，这个就交给调用方来完成。</p>
-<h3 id="回调接口的接口声明："><a href="#回调接口的接口声明：" class="headerlink" title="回调接口的接口声明："></a>回调接口的接口声明：</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
- * @描述： 结果回调
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ResultCallback</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">void</span> <span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">void</span> <span class="token function">failure</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>下载工具类，定义回调接口变量,并在代码中调用接口的方法</p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
- * @描述： 下载任务
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Download</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">private</span> <span class="token class-name">ResultCallback</span> callback<span class="token punctuation">;</span>
-
-    <span class="token keyword">public</span> <span class="token class-name">Download</span><span class="token punctuation">(</span><span class="token class-name">ResultCallback</span> callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>callback <span class="token operator">=</span> callback<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">excuteDownload</span><span class="token punctuation">(</span><span class="token class-name">String</span> usrl<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token annotation punctuation">@Override</span>
-            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token class-name">HttpURLConnection</span> conn <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-                <span class="token keyword">try</span> <span class="token punctuation">{</span>
-                    conn <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">HttpURLConnection</span><span class="token punctuation">)</span> <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span>usrl<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">openConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    conn<span class="token punctuation">.</span><span class="token function">setConnectTimeout</span><span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    conn<span class="token punctuation">.</span><span class="token function">setRequestMethod</span><span class="token punctuation">(</span><span class="token string">"GET"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    <span class="token comment">//做些什么</span>
-
-                    callback<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//thing's done callback</span>
-                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    callback<span class="token punctuation">.</span><span class="token function">failure</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// thing's error  callback</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="调用方：创建下载类对象，因为下载类的构造函数里有回调接口类，不能实例化，所以你需要实现该接口"><a href="#调用方：创建下载类对象，因为下载类的构造函数里有回调接口类，不能实例化，所以你需要实现该接口" class="headerlink" title="调用方：创建下载类对象，因为下载类的构造函数里有回调接口类，不能实例化，所以你需要实现该接口"></a>调用方：创建下载类对象，因为下载类的构造函数里有回调接口类，不能实例化，所以你需要实现该接口</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span> args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-
-      <span class="token keyword">new</span> <span class="token class-name">Download</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ResultCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          <span class="token annotation punctuation">@Override</span>
-          <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-              <span class="token comment">//下载完后做一些事</span>
-          <span class="token punctuation">}</span>
-
-          <span class="token annotation punctuation">@Override</span>
-          <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">failure</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-              <span class="token comment">//do something when work is fail</span>
-          <span class="token punctuation">}</span>
-      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">excuteDownload</span><span class="token punctuation">(</span><span class="token string">"your parameter"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span></code></pre>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>接口回调，实际上是利用了java中的多态性，利用父亲引用指向子类的地址，从而实现父亲接口调用子类实现类的方法。接口回调是设计模式的解耦核心，可以说几乎所有的模式都用到了接口回调。</p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在数字技术重构艺术表达的今天，人工智能正以惊人的速度渗透到创意产业的每个角落。从好莱坞大片到短视频平台的爆款短剧，剧本作为叙事艺术的基石，其创作方式也在经历一场静默的革命。<br>AI 剧本生成工具不仅能够快速生成故事框架和角色设定，还能根据用户的需求进行个性化调整。无论是悬疑、爱情、科幻还是喜剧，AI 都能提供多样化的创意方案，帮助编剧突破思维定式，探索新的叙事可能性。<br>传统的创作方式固然贡献了许多人类文明历史上无比闪耀的光点，但随着技术的发展，我们的创作也需要随之适应。借助 AI 剧本生成工具，我们的创作周期可以大幅缩短，它们不仅能为我们带来效率的跃升，更能带来无穷无尽的宝贵灵感，就像是创作路上先驱的探路明灯。</p>
+<h2 id="精选-6-款-AI-剧本生成器推荐"><a href="#精选-6-款-AI-剧本生成器推荐" class="headerlink" title="精选 6 款 AI 剧本生成器推荐"></a>精选 6 款 AI 剧本生成器推荐</h2><h3 id="1、VEED"><a href="#1、VEED" class="headerlink" title="1、VEED"></a>1、VEED</h3><p><img src="https://baozang.io/wp-content/uploads/2025/02/1739502649-image.png.webp"></p>
+<p>VEED 功能页面预览</p>
+<p><strong>官方网址:</strong> <a target="_blank" rel="noopener" href="https://www.veed.io/tools/script-generator">https://www.veed.io/tools/script-generator</a></p>
+<p>VEED 是一款基于 AI 技术的视频自动剪辑工具。VEED 具有非常齐全的视频编辑功能，无论是为视频添加有趣的视觉效果，还是为视频添加合适的音乐及人声配音，或是编辑视频的尺寸及其他细节，VEED 都可以帮你轻松完成。此外，VEED 还为你提供了样式丰富的模板，可帮你一键完成视频剪辑 。VEED 的页面设计简洁，即使是剪辑新手也不会因为眼花缭乱的功能而晕头转向，VEED 简化了剪辑的操作及步骤，用户只需简单的点击与拖动即可完成视频的剪辑，并且质量丝毫不输传统的专业剪辑工具，因此十分适合刚接触剪辑不久的新手与想要简化步骤的老手。</p>
+<p>剧本生成是它的功能之一，只需要输入主题、选择风格和发行平台即可一键生成包含场景、描述、旁白、对话等部分的完整剧本。生成剧本后可以在 VEED 里完成剪辑，一站式服务，便捷而高效。</p>
+<h3 id="适用类型"><a href="#适用类型" class="headerlink" title="适用类型"></a>适用类型</h3><ul>
+<li>Youtube 视频</li>
+<li>TikTok/抖音 短视频</li>
+<li>Instagram 视频</li>
+<li>LinkedIn 帖子</li>
+<li>B 站视频</li>
+<li>微博视频</li>
+<li>小红书视频</li>
+</ul>
+<h3 id="价格说明"><a href="#价格说明" class="headerlink" title="价格说明"></a>价格说明</h3><p>VEED 的剧本生成功能可免费使用。</p>
+<h3 id="2、Hix-Writer"><a href="#2、Hix-Writer" class="headerlink" title="2、Hix Writer"></a>2、Hix Writer</h3><p><img src="https://baozang.io/wp-content/uploads/2025/02/1739503573-image.png.webp"></p>
+<p>Hix Writer 首页预览</p>
+<p><strong>官方网址:</strong> <a target="_blank" rel="noopener" href="https://writer.hix.ai/zh">https://writer.hix.ai/zh</a></p>
+<p>Hix Writer 是一款基于人工智能技术的 AI 写作生成器。Hix Writer 拥有 120+种写作模板，不仅可以帮助用户生成、改写、优化、总结、翻译、检测内容，还覆盖了营销文案、面试简历、网络小说、电影剧本、电子邮件、新闻稿件、法律条款、备课教案、标题名字等等多类型应用场景。Hix Writer 支持 50+种语言，包括中文，无需担心在创作的路上被语言阻碍。另外，Hix Writer 使用简单，可快速上手，用户只需输入主题和关键字，并指定语气和语言，便可一键快速生成高质量的原创内容，是提高写作效率的必备神器。</p>
+<p>剧本生成是它的写作模板之一</p>
+<h3 id="适用类型-1"><a href="#适用类型-1" class="headerlink" title="适用类型"></a>适用类型</h3><ul>
+<li>Youtube 视频</li>
+<li>TikTok/抖音 短视频</li>
+<li>播客</li>
+<li>B 站视频</li>
+<li>微博视频</li>
+<li>小红书视频</li>
+<li>电影剧本</li>
+</ul>
+<h3 id="价格说明-1"><a href="#价格说明-1" class="headerlink" title="价格说明"></a>价格说明</h3><p>Hix Writer 注册前可以免费生成 300 字，注册后可再获 500 字额度，如需更多额度可以考虑购买付费套餐。</p>
+<h3 id="3、Masterpiece-Generator"><a href="#3、Masterpiece-Generator" class="headerlink" title="3、Masterpiece Generator"></a>3、Masterpiece Generator</h3><p><img src="https://baozang.io/wp-content/uploads/2025/02/1739517666-image.png.webp"></p>
+<p>Masterpiece Generator 首页预览</p>
+<p><strong>官方网址:</strong> <a target="_blank" rel="noopener" href="https://www.plot-generator.org.uk/">https://www.plot-generator.org.uk/</a></p>
+<p>Masterpiece Generator 是一个可以在线使用的英文 AI 剧本生成器。Masterpiece Generator 支持生成短篇故事、电影剧本、儿童绘本、童话故事、等剧本类型，题材多样、风格多变，它既可以帮你快速生成完整的剧本，也可以帮你生成故事标题、转折情节、开头引言，乃至是角色人名、宣传简介等。Masterpiece Generator 的使用并不复杂，它的每一个模板都设置好了详细的提示词，而用户只需填入相应的人名、动作、地点、物品等就可以直接生成剧本。</p>
+<p>Masterpiece Generator 既适合初学者用来练习编剧技巧，也适合有经验的创作者用来激发灵感和加速创作过程。</p>
+<h3 id="适用类型-2"><a href="#适用类型-2" class="headerlink" title="适用类型"></a>适用类型</h3><ul>
+<li>电影剧本</li>
+<li>短剧剧本</li>
+</ul>
+<h3 id="价格说明-2"><a href="#价格说明-2" class="headerlink" title="价格说明"></a>价格说明</h3><p>Masterpiece Generator 目前是完全免费的，不限使用次数。</p>
+<h3 id="4、FlexClip"><a href="#4、FlexClip" class="headerlink" title="4、FlexClip"></a>4、FlexClip</h3><p><img src="https://baozang.io/wp-content/uploads/2025/02/1739521907-image.png.webp"></p>
+<p><strong>官方网址:</strong> <a target="_blank" rel="noopener" href="https://www.plot-generator.org.uk/">https://www.plot-generator.org.uk/</a></p>
+<p>FlexClip 是一款一站式在线 AI 视频制作软件。FlexClip 基于前沿的人工智能技术的支持，可以为用户在图像、音频、视频等方面提供多种智能化的帮助，如 AI 生成图片、脚本、字幕、视频，AI 修复画质、AI 换脸等等，拥有 6000+ 风格各异、适用于营销、婚礼、影视等领域的精美视频模板，并提供海量文字、图片、音乐、特效、滤镜等素材，为用户大大简化了视频创作的流程，提升了创作的效率与质量。</p>
+<h3 id="适用类型-3"><a href="#适用类型-3" class="headerlink" title="适用类型"></a>适用类型</h3><ul>
+<li>Youtube 视频</li>
+<li>TikTok/抖音 短视频</li>
+<li>Instagram 视频</li>
+<li>购物站广告视频</li>
+<li>B 站视频</li>
+<li>微博视频</li>
+<li>小红书视频</li>
+</ul>
+<h3 id="价格说明-3"><a href="#价格说明-3" class="headerlink" title="价格说明"></a>价格说明</h3><p>FlexClip 支持<strong>免费试用</strong>，可制作有限的视频，试用 AI 功能，并享受 720p 的高清下载，如需解锁完整素材、功能，并获取更多额度可考虑购买付费方案。</p>
+<h3 id="5、即创"><a href="#5、即创" class="headerlink" title="5、即创"></a>5、即创</h3><p><img src="https://baozang.io/wp-content/uploads/2025/02/1739522539-image.png.webp"></p>
+<p><strong>官方网址:</strong> <a target="_blank" rel="noopener" href="https://aic.oceanengine.com/login">https://aic.oceanengine.com/login</a></p>
+<p>即创是抖音推出的一款热门 AI 视频创作平台，适合电商、生活服务、短剧等领域使用。它从视频、文案、直播三个方面为用户提供帮助，支持一键生成带货视频、营销文案以及直播间背景和脚本，可帮助用户轻松提升营销效率，节省成本并提升净利润，全方位满足商家的需求。</p>
+<h3 id="适用类型-4"><a href="#适用类型-4" class="headerlink" title="适用类型"></a>适用类型</h3><ul>
+<li>TikTok/抖音短视频</li>
+<li>购物站广告视频</li>
+<li>小红书推广视频</li>
+</ul>
+<h3 id="价格说明-4"><a href="#价格说明-4" class="headerlink" title="价格说明"></a>价格说明</h3><p>即创目前处于公测阶段，所有功能均可<strong>免费试用</strong>。</p>
+<h3 id="6、5118-AI"><a href="#6、5118-AI" class="headerlink" title="6、5118 AI"></a>6、5118 AI</h3><p>**<img src="https://baozang.io/wp-content/uploads/2025/02/1739515751-image.png.webp"></p>
+<p>5118 AI 功能界面</p>
+<p><strong>官方网址:</strong> <a target="_blank" rel="noopener" href="https://www.5118.com/ai/vidscripter">https://www.5118.com/ai/vidscripter</a></p>
+<p>5118.com 是一款在线使用的 SEO 工具，而 5118 AI 是网站中提供的 AI 工具库。5118 AI 采用创新 AI 技术，基于超百亿词库、知识库，持续学习，不断进化，操作简单无需任何学习成本，工具库中包含多种写作生成类 AI 工具，可做到全场景覆盖，例如办公、营销、商业分析、客服、SEO 引流、新媒体创作等等，能为用户快速生成高质量内容，提高工作、创作生产力。</p>
+<p>剧本生成是它的写作模板之一</p>
+<h3 id="适用类型-5"><a href="#适用类型-5" class="headerlink" title="适用类型"></a>适用类型</h3><ul>
+<li>抖音短视频</li>
+<li>微博短视频</li>
+<li>小红书短视频</li>
+</ul>
+<h3 id="价格说明-5"><a href="#价格说明-5" class="headerlink" title="价格说明"></a>价格说明</h3><p>5118 AI 注册登录后可<strong>免费使用</strong>，可试用 3 次生成，如需更多额度可考虑订阅会员。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>本次推荐的工具侧重不同，部分适合写营销推广视频、新闻科普视频脚本，部分适合写短剧、电影剧本，可以选择合适的使用。</p>
 
                 
             </div>
@@ -566,7 +583,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://greatsawyer.github.io/2020/04/24/jie-kou-hui-diao-jie-xi/">https://greatsawyer.github.io/2020/04/24/jie-kou-hui-diao-jie-xi/</a>
+                    <a href="https://greatsawyer.github.io/2025/03/03/ce-ping-wen-zhang/6-ge-ai-ju-ben-sheng-cheng-qi/">https://greatsawyer.github.io/2025/03/03/ce-ping-wen-zhang/6-ge-ai-ju-ben-sheng-cheng-qi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -604,8 +621,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%8E%A5%E5%8F%A3/">
-                                    <span class="chip bg-color">接口</span>
+                                <a href="/tags/%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90AI/">
+                                    <span class="chip bg-color">文本生成AI</span>
                                 </a>
                             
                         </div>
@@ -779,13 +796,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/24/cong-shang-dao-xia-da-yin-er-cha-shu-i/">
+                <a href="/2025/03/04/ce-ping-wen-zhang/5-kuan-zhi-chi-ai-ti-qu-ren-sheng-de-zhuan-ye-gong-ju-tui-jian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="从上到下打印二叉树 I">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="【干货分享】5 款支持 AI 提取人声的专业工具推荐，在线分离人声与伴奏.md">
                         
-                        <span class="card-title">从上到下打印二叉树 I</span>
+                        <span class="card-title">【干货分享】5 款支持 AI 提取人声的专业工具推荐，在线分离人声与伴奏.md</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -796,14 +813,14 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-24
+                            <i class="far fa-clock fa-fw icon-date"></i>2025-03-04
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/leetcode/" class="post-category">
-                                    leetcode
+                            <a href="/categories/AI%E5%B7%A5%E5%85%B7/" class="post-category">
+                                    AI工具
                                 </a>
                             
                             
@@ -813,8 +830,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%A0%91/">
-                        <span class="chip bg-color">树</span>
+                    <a href="/tags/%E5%A3%B0%E9%9F%B3%E5%A4%84%E7%90%86AI/">
+                        <span class="chip bg-color">声音处理AI</span>
                     </a>
                     
                 </div>
@@ -828,13 +845,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/24/shu-zu-zhong-chong-fu-de-shu-zi/">
+                <a href="/2025/02/28/ce-ping-wen-zhang/wu-xian-zhi-jiao-se-ban-yan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="从上到下打印二叉树 III">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="7 款 AI 角色扮演软件推荐.md">
                         
-                        <span class="card-title">从上到下打印二叉树 III</span>
+                        <span class="card-title">7 款 AI 角色扮演软件推荐.md</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -845,14 +862,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-02-28
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/leetcode/" class="post-category">
-                                    leetcode
+                            <a href="/categories/AI%E5%B7%A5%E5%85%B7/" class="post-category">
+                                    AI工具
                                 </a>
                             
                             
@@ -862,16 +879,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%98%9F%E5%88%97/">
-                        <span class="chip bg-color">队列</span>
-                    </a>
-                    
-                    <a href="/tags/%E9%80%92%E5%BD%92/">
-                        <span class="chip bg-color">递归</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%A0%88/">
-                        <span class="chip bg-color">栈</span>
+                    <a href="/tags/%E8%A7%92%E8%89%B2%E6%89%AE%E6%BC%94/">
+                        <span class="chip bg-color">角色扮演</span>
                     </a>
                     
                 </div>

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="接口回调解析, AI,Java,Python,Spring">
+    <meta name="keywords" content="【干货分享】5 款支持 AI 提取人声的专业工具推荐，在线分离人声与伴奏.md, AI,Java,Python,Spring">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>接口回调解析 | 程序员小宇</title>
+    <title>【干货分享】5 款支持 AI 提取人声的专业工具推荐，在线分离人声与伴奏.md | 程序员小宇</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -312,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">接口回调解析</h1>
+                    <h1 class="description center-align post-title">【干货分享】5 款支持 AI 提取人声的专业工具推荐，在线分离人声与伴奏.md</h1>
                 </div>
             </div>
         </div>
@@ -433,8 +433,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%8E%A5%E5%8F%A3/">
-                                <span class="chip bg-color">接口</span>
+                            <a href="/tags/%E5%A3%B0%E9%9F%B3%E5%A4%84%E7%90%86AI/">
+                                <span class="chip bg-color">声音处理AI</span>
                             </a>
                         
                     </div>
@@ -445,8 +445,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/java/" class="post-category">
-                                java
+                            <a href="/categories/AI%E5%B7%A5%E5%85%B7/" class="post-category">
+                                AI工具
                             </a>
                         
                     </div>
@@ -458,7 +458,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-24
+                    2025-03-04
                 </div>
                 
 
@@ -482,64 +482,82 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="为什么会有接口回调？什么是接口回调？"><a href="#为什么会有接口回调？什么是接口回调？" class="headerlink" title="为什么会有接口回调？什么是接口回调？"></a>为什么会有接口回调？什么是接口回调？</h2><p>其实这两个问题是一个问题，知道了接口回调的原理自然就知道了为什么会有这么个东西。我们知道java中接口是不可以直接创建实例的，那么问题来了，假如我把一个接口声明为一个变量，那么我执行这个接口中的方法，接口没有实例它该怎么办呢？啊哈，这里自然又改出现java中的另一个特性—“多态”，这时java虚拟机自然会去找其子类，调用其子类中已经重载的该方法，这里就是接口回调的本质！！<br>我们在网络请求等耗时的操作的时候会使用到该机制，用来把得到的数据传回主线程中。</p>
-<h2 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h2><p>比如我写一个工具，下载任务，下载任务可能成功，可能失败。为了解耦，我的这个下载工具类只能专门用来下载，如何处理成功和失败，这个就交给调用方来完成。</p>
-<h3 id="回调接口的接口声明："><a href="#回调接口的接口声明：" class="headerlink" title="回调接口的接口声明："></a>回调接口的接口声明：</h3><pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
- * @描述： 结果回调
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ResultCallback</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">void</span> <span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">void</span> <span class="token function">failure</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
-<p>下载工具类，定义回调接口变量,并在代码中调用接口的方法</p>
-<pre class="language-java" data-language="java"><code class="language-java"><span class="token comment">/**
- * @描述： 下载任务
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Download</span> <span class="token punctuation">{</span>
-
-    <span class="token keyword">private</span> <span class="token class-name">ResultCallback</span> callback<span class="token punctuation">;</span>
-
-    <span class="token keyword">public</span> <span class="token class-name">Download</span><span class="token punctuation">(</span><span class="token class-name">ResultCallback</span> callback<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>callback <span class="token operator">=</span> callback<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">excuteDownload</span><span class="token punctuation">(</span><span class="token class-name">String</span> usrl<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token annotation punctuation">@Override</span>
-            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                <span class="token class-name">HttpURLConnection</span> conn <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-                <span class="token keyword">try</span> <span class="token punctuation">{</span>
-                    conn <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">HttpURLConnection</span><span class="token punctuation">)</span> <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span>usrl<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">openConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    conn<span class="token punctuation">.</span><span class="token function">setConnectTimeout</span><span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">*</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    conn<span class="token punctuation">.</span><span class="token function">setRequestMethod</span><span class="token punctuation">(</span><span class="token string">"GET"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                    <span class="token comment">//做些什么</span>
-
-                    callback<span class="token punctuation">.</span><span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//thing's done callback</span>
-                <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                    callback<span class="token punctuation">.</span><span class="token function">failure</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// thing's error  callback</span>
-                <span class="token punctuation">}</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="调用方：创建下载类对象，因为下载类的构造函数里有回调接口类，不能实例化，所以你需要实现该接口"><a href="#调用方：创建下载类对象，因为下载类的构造函数里有回调接口类，不能实例化，所以你需要实现该接口" class="headerlink" title="调用方：创建下载类对象，因为下载类的构造函数里有回调接口类，不能实例化，所以你需要实现该接口"></a>调用方：创建下载类对象，因为下载类的构造函数里有回调接口类，不能实例化，所以你需要实现该接口</h2><pre class="language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span> args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-
-      <span class="token keyword">new</span> <span class="token class-name">Download</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ResultCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-          <span class="token annotation punctuation">@Override</span>
-          <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">success</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-              <span class="token comment">//下载完后做一些事</span>
-          <span class="token punctuation">}</span>
-
-          <span class="token annotation punctuation">@Override</span>
-          <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">failure</span><span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-              <span class="token comment">//do something when work is fail</span>
-          <span class="token punctuation">}</span>
-      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">excuteDownload</span><span class="token punctuation">(</span><span class="token string">"your parameter"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span></code></pre>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>接口回调，实际上是利用了java中的多态性，利用父亲引用指向子类的地址，从而实现父亲接口调用子类实现类的方法。接口回调是设计模式的解耦核心，可以说几乎所有的模式都用到了接口回调。</p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>想给短视频加点创意，却找不到合适的纯净伴奏？翻唱的时候总是被原唱的声音干扰？抑或者是音乐制作中，想要将人声和伴奏分开处理，却因为技术限制而头疼？不用担心，这些问题现在都能靠 AI 工具轻松解决。<br>短视频创作者可以用它提取伴奏，一键搞定背景音乐的替换；音乐人能分离音轨，自由调整人声和伴奏比例，让创作更加自由；翻唱、或是 KTV 爱好者也能快速提取纯伴奏，不受干扰地创作专属于自己的歌曲版本。<br>本次推荐的这些 AI 工具不仅简单高效，还大大降低了音频处理的门槛。不管你是入门用户还是资深创作者，总有一款工具能完美解决你的需求，让你的创作更上一层楼。</p>
+<h2 id="精选-5-款-AI-人声分离工具推荐"><a href="#精选-5-款-AI-人声分离工具推荐" class="headerlink" title="精选 5 款 AI 人声分离工具推荐"></a>精选 5 款 AI 人声分离工具推荐</h2><h3 id="1、Voice-AI"><a href="#1、Voice-AI" class="headerlink" title="1、Voice.AI"></a>1、Voice.AI</h3><p><img src="https://baozang.io/wp-content/uploads/2025/01/1736746426-image.png.webp"></p>
+<p>Voice.AI 页面预览</p>
+<p><strong>官方网址:</strong> <a target="_blank" rel="noopener" href="https://voice.ai/tools/vocal-remover">https://voice.ai/tools/vocal-remover</a></p>
+<p>Voice.AI 是一款多功能的 AI 语音转换器，AI 人声去除是其中的一项功能。Voice.AI 的主要功能是 AI 变声，内置包含上千种声线的语音库，可自由地改变自己的声音，聊天、游戏、直播中都能用。除此之外还支持 AI 音轨分离、AI 音频增强等功能，不仅提升了音频处理的效率，还降低了技术门槛，让每个人都能轻松实现专业级的创意。</p>
+<p>除了变声器功能需要下载使用外，其他 AI 功能都支持在线使用。若想使用 AI 人声去除功能，只需打开网页注册登录后，上传音频，等待 AI 进行自动处理，既可以多种格式下载去除人声后的音频，支持以 MP3、WAV、FLAC、AAC、OGG、AIFF 格式导出。</p>
+<h3 id="功能一览"><a href="#功能一览" class="headerlink" title="功能一览"></a>功能一览</h3><ul>
+<li><strong>AI 变声</strong>（Voice Changer）：转换声音或音频文件，支持上千种不同风格的声线，可模仿名人明星、虚拟人物，也可完全改变自己的风格，可在视频创作、网络直播、游戏语音、社交聊天中应用。</li>
+<li><strong>AI 人声去除器</strong>（Vocal Remover）：快速从歌曲中分离并删除人声，轻松获取纯净的伴奏。</li>
+<li><strong>AI 音频增强器</strong>（Audio Enhancer）：轻松消除背景噪音并提高音频质量。</li>
+<li><strong>AI 回声去除器</strong>（Echo Remover）：快速消除音频中的回声，增强清晰度。</li>
+<li><strong>AI 音轨分离器</strong>（Stem Splitter）：自动分离音轨，精准隔离人声、乐器、节拍、贝斯线等元素。</li>
+<li><strong>AI 调和节拍检测器</strong>（Key BPM Finder）：上传音频即可一键获得完美的调式和节奏。</li>
+<li><strong>AI 混响去除器</strong>（Reverb Remover）：在线消除音频中的背景噪音。</li>
+<li><strong>AI 音频转换器</strong>（Audio Converter）：在线转换音频文件格式，支持 mp3、og9、wav、flac、mp4、m4a。</li>
+<li><strong>AI 录音器</strong>（Voice Recorder）：基于人工智能技术实现高清录音，还原现场声音。</li>
+</ul>
+<h3 id="注册方式"><a href="#注册方式" class="headerlink" title="注册方式"></a>注册方式</h3><p><strong>注册地址:</strong> <a target="_blank" rel="noopener" href="https://voice.ai/register">https://voice.ai/register</a> Voice.AI 支持<strong>谷歌邮箱 Gmail 注册</strong>、<strong>普通邮箱注册</strong>、<strong>Twitch</strong> <strong>注册</strong>、<strong>Discord 注册</strong>。</p>
+<h3 id="价格说明"><a href="#价格说明" class="headerlink" title="价格说明"></a>价格说明</h3><p>Voice.AI 注册登录后可<strong>免费使用</strong>，可以免费转换 5 种声线，AI 去人声可免费使用，但只能以 MP3 格式导出，其他格式需购买付费方案。</p>
+<h3 id="2、Vocal-Remover"><a href="#2、Vocal-Remover" class="headerlink" title="2、Vocal Remover"></a>2、Vocal Remover</h3><p><img src="https://baozang.io/wp-content/uploads/2025/01/1736748183-image.png.webp"></p>
+<p>Vocal Remover 首页预览</p>
+<p><strong>官方网址:</strong> <a target="_blank" rel="noopener" href="https://vocalremover.org/zh/">https://vocalremover.org/zh/</a></p>
+<p>Vocal Remover 是一款基于人工智能技术的，免费的多功能在线音频处理工具。Vocal Remover 集成了多项强大的功能，能够满足各类音频编辑需求，例如人声去除、分离音轨、合并音轨、剪辑音频、音频变调等等，无需复杂的操作步骤，只需上传即可一键完成音频的专业级处理，为内容创作者和音乐人提供了全面的音频编辑支持，提升了创作效率与质量，无论是零技术基础的新人还是追求效率的老手都能自如地将它应用到创作中去。</p>
+<p>Vocal Remover 首页支持切换语言，其中可切换为中文。</p>
+<h3 id="功能一览-1"><a href="#功能一览-1" class="headerlink" title="功能一览"></a>功能一览</h3><ul>
+<li><strong>AI 去人声</strong>：用强大的人工智能算法将声音从音乐中分离出来，可以 MP3、WAV 两种格式导出。</li>
+<li><strong>AI 乐器分离器</strong>：基于 AI 算法将音乐分割成不同的部分。</li>
+<li><strong>AI 变调器</strong>：通过调整乐调和 BPM 滑条改变歌曲的音高和节奏。</li>
+<li><strong>AI 调和 BPM 查询器</strong>：分析音乐并查找任何一首歌曲的调、音阶和 BPM。</li>
+<li><strong>AI 音频剪辑器</strong>：可在线剪辑任何音频文件。</li>
+<li><strong>AI 音频合并器</strong>：将多个音轨合并成一个。</li>
+<li><strong>在线录音</strong></li>
+<li><strong>卡拉 OK</strong></li>
+</ul>
+<h3 id="注册方式-1"><a href="#注册方式-1" class="headerlink" title="注册方式"></a>注册方式</h3><p>Vocal Remover 无需注册。</p>
+<h3 id="价格说明-1"><a href="#价格说明-1" class="headerlink" title="价格说明"></a>价格说明</h3><p>Vocal Remover 完全免费，网站现有功能都支持无限制免费使用，但如果你想增添一些更高级的功能可以对网站作者进行捐助。</p>
+<h3 id="3、X-MINUS-PRO"><a href="#3、X-MINUS-PRO" class="headerlink" title="3、X-MINUS.PRO"></a>3、X-MINUS.PRO</h3><p><img src="https://baozang.io/wp-content/uploads/2025/01/1736756456-image.png.webp"></p>
+<p><strong>官方网址:</strong> <a target="_blank" rel="noopener" href="https://x-minus.pro/">https://x-minus.pro/</a></p>
+<p>X-MINUS.PRO 是一款 AI 在线音频处理工具，它基于先进的人工智能技术，可以通过帮助用户移除上传音频中的人声轨道来消除歌曲中的人声，以获得高质量的和声伴奏。用户会将其用 X-MINUS.PRO 制作的伴奏上传到网站中，可在线试听或下载。</p>
+<p>除了 AI 人声消除功能外，X-MINUS.PRO 还支持在线调节歌曲的音调。</p>
+<h3 id="功能一览-2"><a href="#功能一览-2" class="headerlink" title="功能一览"></a>功能一览</h3><ul>
+<li><strong>AI 去人声</strong>：提供适用于处理不同音乐的 AI 大模型，不仅可以完美剔除不同乐器演奏歌曲中的人声，还能做到保留伴唱、消除混响、消除人群杂音等。</li>
+<li><strong>AI 变奏器</strong>：快速更改任何歌曲的音调与节奏，将其音调调高或调低。</li>
+<li><strong>伴奏曲库</strong>：汇集了由 700,000&nbsp;名用户上传的海量伴奏歌曲，可根据首字母筛选或直接查询歌曲名称，支持在线试听、下载。</li>
+</ul>
+<h3 id="注册方式-2"><a href="#注册方式-2" class="headerlink" title="注册方式"></a>注册方式</h3><p><strong>注册地址:</strong> <a target="_blank" rel="noopener" href="https://x-minus.pro/login">https://x-minus.pro/login</a> X-MINUS.PRO 支持<strong>谷歌邮箱 Gmail 注册</strong>、<strong>普通邮箱注册</strong>、<strong>VK ID注册</strong>、<strong>Yandex ID 注册</strong>。</p>
+<h3 id="价格说明-2"><a href="#价格说明-2" class="headerlink" title="价格说明"></a>价格说明</h3><p>X-MINUS.PRO 注册登录后可<strong>免费使用</strong>，每天可以处理 10 分钟的音频。</p>
+<h3 id="4、网易云-X-Studio"><a href="#4、网易云-X-Studio" class="headerlink" title="4、网易云 X Studio"></a>4、网易云 X Studio</h3><p><img src="https://baozang.io/wp-content/uploads/2025/01/1736219508-image.png.webp"></p>
+<p>X Studio 首页预览</p>
+<p><strong>官方网址:</strong> <a target="_blank" rel="noopener" href="https://xstudio.music.163.com/#page_one">https://xstudio.music.163.com/#page_one</a></p>
+<p>X Studio 是一款由网易云音乐和小冰 X Studio 联合出品的 AI 歌手翻唱软件。主要功能为利用 AI 歌手制作效果专业的真人歌曲，如对其功能感兴趣可点击上方按钮查看详细测评。</p>
+<p>AI 人声伴奏分离是其众多强大功能中的一种，上传即可自动分离，支持下载。</p>
+<h3 id="功能一览-3"><a href="#功能一览-3" class="headerlink" title="功能一览"></a>功能一览</h3><ul>
+<li><strong>人声伴奏分离工具</strong>：可将完整的歌曲音频拆分为人声和伴奏两轨，可导出。</li>
+<li><strong>AI 歌曲演唱</strong>：上传 midi 和歌词即可一键合成歌声自然的歌曲。</li>
+<li><strong>多位 AI 歌手</strong>：支持 27 位 AI 歌手，包括洛天依、福姬彩华、叶画秋、若溪、白屿川等等，支持流行、摇滚、戏曲、美声、民族、说唱、爵士等曲风。</li>
+<li><strong>极速合成</strong>：采用流式歌声合成技术，比前代软件快 5 倍，可在 3秒内合成完整歌曲。</li>
+<li><strong>多音轨合成</strong>：支持同时合成 30 轨。</li>
+<li><strong>手动调整</strong>：支持自定义音高、咬字、换气、音量、力度等。</li>
+<li><strong>手动测速工具</strong>：跟随音乐律动，敲击空格键或点击鼠标，手动测量歌曲的节拍和速度，测量结果可添加到正在编辑的歌曲中。</li>
+<li><strong>人声转 midi 工具</strong>：支持快速提取某段歌声的 midi 曲谱、歌词及演唱音高细节，使歌声制作更加高效。</li>
+</ul>
+<h3 id="注册方式-3"><a href="#注册方式-3" class="headerlink" title="注册方式"></a>注册方式</h3><p>X Studio 支持<strong>网易云账户</strong>登录。</p>
+<h3 id="价格说明-3"><a href="#价格说明-3" class="headerlink" title="价格说明"></a>价格说明</h3><p>X Studio 注册登录后可<strong>免费使用</strong>，暂不收费。</p>
+<h3 id="5、NovaMSS"><a href="#5、NovaMSS" class="headerlink" title="5、NovaMSS"></a>5、NovaMSS</h3><p><img src="https://baozang.io/wp-content/uploads/2025/01/1736757610-image.png.webp"></p>
+<p>NovaMSS 首页预览</p>
+<p><strong>官方网址:</strong> <a target="_blank" rel="noopener" href="https://novamss.com/">https://novamss.com/</a></p>
+<p>NovaMSS 是一款 AI 音乐源分离工具。NovaMSS 基于 MSS 领域最顶级的算法，搭载了经上千首歌曲训练、调优后的模型，可彻底地分离音轨，它为用户提供了多种效果不同的 AI 模型，支持一键提取或分离乐曲的人声、伴奏、音轨，不仅可以处理单支歌曲，也支持大批量快速处理。与此同时，NovaMSS 界面风格简洁，操作简单，具有良好的用户友好度，文件上传文件后只需操纵鼠标轻点即可开始自动处理，大大降低了处理音频的门槛，保证了创作过程的高效性与专业性。</p>
+<h3 id="功能一览-4"><a href="#功能一览-4" class="headerlink" title="功能一览"></a>功能一览</h3><ul>
+<li>提供 6 种效果不同的模型（具体对比请看测评）</li>
+<li>AI 音轨分离</li>
+<li>AI 人声提取</li>
+<li>AI 伴奏提取</li>
+</ul>
+<h3 id="价格说明-4"><a href="#价格说明-4" class="headerlink" title="价格说明"></a>价格说明</h3><p>NovaMSS 下载后可<strong>免费使用</strong>。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>大家在挑选工具时，可以根据自己的需求选择最适合的一款，相信今天介绍的这些工具不会让你失望。</p>
 
                 
             </div>
@@ -566,7 +584,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://greatsawyer.github.io/2020/04/24/jie-kou-hui-diao-jie-xi/">https://greatsawyer.github.io/2020/04/24/jie-kou-hui-diao-jie-xi/</a>
+                    <a href="https://greatsawyer.github.io/2025/03/04/ce-ping-wen-zhang/5-kuan-zhi-chi-ai-ti-qu-ren-sheng-de-zhuan-ye-gong-ju-tui-jian/">https://greatsawyer.github.io/2025/03/04/ce-ping-wen-zhang/5-kuan-zhi-chi-ai-ti-qu-ren-sheng-de-zhuan-ye-gong-ju-tui-jian/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -604,8 +622,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%8E%A5%E5%8F%A3/">
-                                    <span class="chip bg-color">接口</span>
+                                <a href="/tags/%E5%A3%B0%E9%9F%B3%E5%A4%84%E7%90%86AI/">
+                                    <span class="chip bg-color">声音处理AI</span>
                                 </a>
                             
                         </div>
@@ -775,17 +793,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/04/24/cong-shang-dao-xia-da-yin-er-cha-shu-i/">
+                <a href="/2025/03/04/ce-ping-wen-zhang/5-kuan-zhi-chi-ai-ti-qu-ren-sheng-de-zhuan-ye-gong-ju-tui-jian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="从上到下打印二叉树 I">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="【干货分享】5 款支持 AI 提取人声的专业工具推荐，在线分离人声与伴奏.md">
                         
-                        <span class="card-title">从上到下打印二叉树 I</span>
+                        <span class="card-title">【干货分享】5 款支持 AI 提取人声的专业工具推荐，在线分离人声与伴奏.md</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -795,26 +814,27 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-24
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-03-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/leetcode/" class="post-category">
-                                    leetcode
+                            <a href="/categories/AI%E5%B7%A5%E5%85%B7/" class="post-category">
+                                    AI工具
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%A0%91/">
-                        <span class="chip bg-color">树</span>
+                    <a href="/tags/%E5%A3%B0%E9%9F%B3%E5%A4%84%E7%90%86AI/">
+                        <span class="chip bg-color">声音处理AI</span>
                     </a>
                     
                 </div>
@@ -828,13 +848,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/24/shu-zu-zhong-chong-fu-de-shu-zi/">
+                <a href="/2025/03/03/ce-ping-wen-zhang/6-ge-ai-ju-ben-sheng-cheng-qi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="从上到下打印二叉树 III">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="【干货分享】6 个 AI 剧本生成器，帮你自动生成电影、短剧、短视频剧本.md">
                         
-                        <span class="card-title">从上到下打印二叉树 III</span>
+                        <span class="card-title">【干货分享】6 个 AI 剧本生成器，帮你自动生成电影、短剧、短视频剧本.md</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -845,14 +865,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-24
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-03-03
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/leetcode/" class="post-category">
-                                    leetcode
+                            <a href="/categories/AI%E5%B7%A5%E5%85%B7/" class="post-category">
+                                    AI工具
                                 </a>
                             
                             
@@ -862,16 +882,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%98%9F%E5%88%97/">
-                        <span class="chip bg-color">队列</span>
-                    </a>
-                    
-                    <a href="/tags/%E9%80%92%E5%BD%92/">
-                        <span class="chip bg-color">递归</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%A0%88/">
-                        <span class="chip bg-color">栈</span>
+                    <a href="/tags/%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90AI/">
+                        <span class="chip bg-color">文本生成AI</span>
                     </a>
                     
                 </div>
